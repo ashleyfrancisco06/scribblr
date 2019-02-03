@@ -24,7 +24,9 @@ You are **responsible** for scheduling time with your squad to seek approval for
 
 TDB
 
-ERD: 
+ERD:
+
+'../cash-project-3/assets/cash-project-erd.xml'
 
 ## Wireframes
 
