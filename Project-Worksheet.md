@@ -89,7 +89,7 @@ Helper functions should be generic enought that they can be reused in other appl
 | Function | Description | 
 | Function | Description |
 
-## Additional Libraries
+## Dependencies / Technologies
  Use this section to list all supporting libraries and thier role in the project. 
  
 | Library | What it Does | 
