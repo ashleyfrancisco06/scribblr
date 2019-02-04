@@ -91,11 +91,24 @@ app.get('/user-profile/:id', async (req, res) => {
         })
     }
 })
+ 
+//get all comments
+app.get('/comments', async(req,res)=>{
+    try{
+        const comments = await Comment.findAll()
+        res.json({comments})
+    }catch(e){
+        res.status(404).json({
+            message: e.message
+        })
+    }
+})
 
 // create comment
 app.post('/scribbls/:id/comment', async (req, res) => {
     try {
-
+        console.log(req.body)
+        
         const comment = await Comment.create(req.body)
         res.json({ comment })
 
