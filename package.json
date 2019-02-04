@@ -28,7 +28,19 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+<<<<<<< HEAD
+  "description": "## Project Description",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://git.generalassemb.ly/csheppard24/cash-project-3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+=======
   "devDependencies": {
     "nodemon": "^1.18.9"
   }
+>>>>>>> c101a1da41c316c779cd9f37b09641c586fdf455
 }
