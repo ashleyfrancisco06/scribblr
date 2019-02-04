@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express()
-// const { User, Work, Comment } = require('./models');
+const { User, Work, Comment } = require('./models');
 const PORT = process.env.PORT || 3000
 const bodyParser = require('body-parser');
 
@@ -19,8 +19,8 @@ app.get('/', (req, res) => {
 app.get('/scribbls', async (req, res) => {
     try {
 
-        // const scribbl = await Work.findAll()
-        res.json('Scribbls Results Page')
+        const scribbl = await Work.findAll()
+        res.json({scribbl})
 
     } catch (e) {
         res.status(404).json({
@@ -33,7 +33,7 @@ app.get('/scribbls/:id', async (req, res) => {
     try {
         id = req.params.id
         const scribbl = await Work.findById(id)
-        res.json({ scribbl } + " This is an individual Scribbl")
+        res.json( {scribbl})
 
     } catch (e) {
         res.status(404).json({
@@ -55,6 +55,18 @@ app.post('/create-scribbl', async (req, res) => {
     }
 })
 
+// login route 
+app.get('/login', async(req,res)=>{
+    try{
+       const login = await User.findById(req.params.id)
+       res.json(login)
+    }catch(e){
+        res.status(404).json({
+            message: e.message
+        })
+    }
+})
+
 //create new user 
 app.post('/login/sign-up', async (req, res) => {
     try {
@@ -68,13 +80,47 @@ app.post('/login/sign-up', async (req, res) => {
     }
 })
 // user profile
-app.get('/user-profile', async(req,res)=>{
+app.get('/user-profile/:id', async(req,res)=>{
     try{
         const userid = req.params.id
         const profile = await User.findById(userid)
         res.json({profile})
     }catch(e){
+        res.status(404).json({
+            message: e.message
+        })
+    }
+})
 
+// create comment
+app.post('/scribbls/:id/comment', async(req,res)=>{
+    try{
+
+        const comment = await Comment.create(req.body)
+        res.json({comment})
+
+    }catch(e){
+        res.status(404).json({
+            message: e.message
+        })
+    }
+})
+
+//delete user
+
+app.delete('/user-profile/:id', async(req,res)=>{
+    try{
+        const userid = req.params.id
+        const user = await User.destroy({
+            where: {
+                id : userid
+            }
+        })
+        res.json({message: `User {user} was deleted.`})
+    }catch(e){
+        res.status(404).json({
+            message: e.message
+        })
     }
 })
 
