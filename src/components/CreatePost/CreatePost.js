@@ -1,11 +1,17 @@
-import React from 'react'
+import React, {Component} from 'react'
 
-const CreatePost = () => {
+class CreatePost extends Component {
+    constructor() {
+        super()
+    }
+    render() {
         return (
-            <div className='create-post'>
+            <div className='createPost'>
                 <h1>Testing</h1>
             </div>
         )
+    }
+        
     
 }
 

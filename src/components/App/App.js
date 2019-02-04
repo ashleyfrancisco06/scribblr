@@ -13,10 +13,10 @@ class App extends Component {
         <Switch>
           <Route 
             exact path='/'
-            route={() => <ExistingPosts />}
+            component={ExistingPosts}
           />
           <Route 
-            path='/create-work' 
+            path='/createPost' 
             component={CreatePost}
           />
         </Switch>
