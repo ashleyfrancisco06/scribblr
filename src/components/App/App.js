@@ -12,11 +12,11 @@ class App extends Component {
         <Header />
         <Switch>
           <Route 
-            exact path='/'
+            exact path='/scribbls'
             component={ExistingPosts}
           />
           <Route 
-            path='/createPost' 
+            path='/create-scribbl' 
             component={CreatePost}
           />
         </Switch>
