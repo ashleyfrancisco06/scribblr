@@ -8,7 +8,7 @@ You are **responsible** for scheduling time with your squad to seek approval for
 
 |  Day | Deliverable | Status
 |---|---| ---|
-|Day 1| Project Description | Incomplete
+|Day 1| Project Description | Complete
 |Day 1| Wireframes / Priority Matrix / Architecture / ERD | Incomplete
 |Day 2| Core Application Structure (React, Express and Sequelize Files) | Incomplete
 |Day 2| Pseudocode / actual code | Incomplete
@@ -31,6 +31,8 @@ ERD:
 ## Wireframes
 
 Below is the link to Project Wireframes:
+https://balsamiq.cloud/s3ujqws/p5d92s5/r56C6
+https://balsamiq.cloud/s42mh39/pyr8oww
 
 
 ## Priority Matrix
@@ -100,7 +102,7 @@ Helper functions should be generic enought that they can be reused in other appl
 | React |
 | React-Router | Used to improve site navigation |
 | Express | Tie front-end to back-end |
-| Sequelize | DB communication
+| Sequelize | DB communication |
 | Nodemon | To facilitate back-end development | 
 | Body-Parser | To facilitate putting user-input into the database |
 | Morgan | Facilitate debugging with error messages |
