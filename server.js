@@ -42,6 +42,22 @@ app.get('/scribbls/:id', async (req, res) => {
     }
 })
 
+app.get('/scribbls/byType/:type', async (req, res) => {
+    try {
+        const type = req.params.type
+        const scribbls = await Work.findAll({
+            where: {
+                type
+            }
+        })
+        res.json( {scribbls} )
+    } catch(e) {
+        res.status(500).json({
+            message: e.message
+        })
+    }
+})
+
 //create new scribbl 
 app.post('/create-scribbl', async (req, res) => {
     try {
