@@ -1,65 +1,80 @@
 import React, {Component} from 'react'
-import './CreateForm.css'
+import './CreateForm.css';
+import axios from 'axios';
 
 class CreateForm extends Component {
     constructor() {
         super()
         this.state = {
-           post: [],
+           work: [],
             created: false
 
         }
     }
 
+    handleChange = (event) => {
+        const element = event.target
+        const { name , value } = element
+
+        const newState = {}
+        newState[name] = value
+
+        this.setState(newState)
+
+        console.log(newState)
+    }
+
     handleSubmit = (event) => {
-        // alert(`You have chosen ${this.state.value}`)
         console.log('Scribbl submitted')
         event.preventDefault()
 
-        let newPost = {
-            type: this.state.type,
+        let newWork = {
+            // type: this.state.type,
             title: this.state.title,
             content: this.state.content
         }
-        console.log(newPost)
+        console.log(newWork)
 
-        axios.post('/scribbls', newPost)
+        axios.post('/create-scribbl', newWork)
         .then(res => console.log(res.data));
 
         this.setState({
-            newPost: newPost,
+            newWork: newWork,
             created: true
         })
     }
 
-    handleChange = (event) => {
-        this.setState({
-            value: event.target.value
-        })
-    }
+  
     
 
     
 
     render() {
         return (
-                <form id='post-form' onSubmit={this.handleSubmit} onChange={this.handleChange}>
-                    <input type='text' />
-                    <select form='post-form' className='postDropdownSelect'>
+                <form id='post-form' 
+                onSubmit={this.handleSubmit}
+                 onChange={this.handleChange}>
+                    <input type='text'
+                    value={this.state.title} />
+                    {/* <select form='post-form' className='postDropdownSelect'>
                         <option value={this.state.value}>Select Genre</option>
                         <option value='short story'>Short Story</option>
                         <option value='poetry'>Poetry</option>
                         <option value='essay'>Essay</option>
                         <option value='misc'>Misc</option>
-                    </select>
+                    </select> */}
                     <br />
                     {/* <input type='text' className='postContent' /> */}
-                    <textarea form='post-form' defaultValue='' placeholder='Work goes here...' className='postContent'></textarea>
+                    <textarea form='post-form'
+                     value={this.state.content}
+                      placeholder='Work goes here...'
+                       className='postContent'></textarea>
                     <br />
-                    <input type='submit' 
+                    <button type='submit' 
                     className='submitContent'
                     onSubmit={this.handleSubmit}
-                     />
+                    onChange={this.handleChange}
+                     >Submit</button>
                 </form>
         )
     }
