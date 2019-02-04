@@ -28,7 +28,7 @@ This is an application that allows writers to submit their works to then be revi
 
 ERD:
 
-<img src="Image from iOS.jpg">
+<img src="./assets/Image from iOS.jpg">
 
 ## Wireframes
 
