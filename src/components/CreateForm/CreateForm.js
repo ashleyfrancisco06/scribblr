@@ -54,18 +54,21 @@ class CreateForm extends Component {
                 <form id='post-form' 
                 onSubmit={this.handleSubmit}
                  onChange={this.handleChange}>
+                    <label htmlFor="title">Title: </label>
                     <input type='text'
+                    name='title'
                     value={this.state.title} />
                     {/* <select form='post-form' className='postDropdownSelect'>
                         <option value={this.state.value}>Select Genre</option>
-                        <option value='short story'>Short Story</option>
-                        <option value='poetry'>Poetry</option>
-                        <option value='essay'>Essay</option>
-                        <option value='misc'>Misc</option>
+                        <option value='Short Story'>Short Story</option>
+                        <option value='Poetry'>Poetry</option>
+                        <option value='Essay'>Essay</option>
+                        <option value='Misc'>Misc</option>
                     </select> */}
                     <br />
                     {/* <input type='text' className='postContent' /> */}
                     <textarea form='post-form'
+                    name='content'
                      value={this.state.content}
                       placeholder='Work goes here...'
                        className='postContent'></textarea>
