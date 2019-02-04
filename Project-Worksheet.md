@@ -45,20 +45,21 @@ Include a full list of features that have been prioritized based on the `Time an
 
 
 |  Item | Priority | Estimated Time | Actual Time | Total Time
-|a|---| ---|---| -- |
-| b | ---| -hs | -hs | -hs |
-| c | --- |-hs | -hs | -hs |
-| d | --- | -hs | -hs | -hs |
-| --- | --- | -hs | -hs | -hs |
-| --- | --- | -hs | -hs | -hs |
-| --- | --- | -hs | -hs | -hs |
-| --- | --- | -hs | -hs | -hs |
-| --- | --- | -hs | -hs | -hs |
-| --- | --- | -hs | -hs | -hs |
-| --- | --- | -hs | -hs | -hs |
-| --- | --- | -hs | -hs | -hs |
-| --- | --- | -hs | -hs | -hs |
-| --- | --- | -hs | -hs | -hs |
+|---|---| ---|---| -- |
+| a | HI| 1hs | -hs | -hs |
+| b | HI|1hs | -hs | -hs |
+| c| HI | 2hs | -hs | -hs |
+|d | HI | 1hs | -hs | -hs |
+|e | HI| 2hs | -hs | -hs |
+| f | HI | 3hs | -hs | -hs |
+|g |HI| 1hs | -hs | -hs |
+| h |HI| 1hs | -hs | -hs |
+|i|HI | 2hs | -hs | -hs |
+| j |  HI| 1hs | -hs | -hs |
+|k |LOW| 3hs | -hs | -hs |
+|l | LOW | 3hs | -hs | -hs |
+|m | LOW| 4hs | -hs | -hs |
+| TOTAL |  | 25hrs | |
 
 ### MVP/PostMVP - 5min
 
