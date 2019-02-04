@@ -1,4 +1,4 @@
-const { User, Work, Comment } = require('../../models');
+const { User, Work, Comment } = require('../models/models');
 
 const main = async () => {
 
