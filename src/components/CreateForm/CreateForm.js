@@ -9,6 +9,7 @@ class CreateForm extends Component {
            work: [],
             created: false
 
+
         }
     }
 
@@ -43,11 +44,6 @@ class CreateForm extends Component {
             created: true
         })
     }
-
-  
-    
-
-    
 
     render() {
         return (

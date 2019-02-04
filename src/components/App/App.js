@@ -10,9 +10,26 @@ class App extends Component {
   constructor(){
     super()
     this.state ={
-      works: []
+      selectedOption: null,
+      works: [],
+      searchedScribbls: null
     }
  
+  }
+
+  handleChange = (selectedOption) => {
+    const value = selectedOption.value
+    this.setState({selectedOption: selectedOption.value})
+    this.loadData(value)
+  }
+
+  loadData = async (value) => {
+    // console.log(value)
+    const res = await axios.get(`/scribbls/byType/${value}`)
+    const searchedScribbls = res.data.scribbls
+    this.setState({
+        searchedScribbls
+    })
   }
 
   getWorksData = () =>{
@@ -28,6 +45,7 @@ class App extends Component {
   componentDidMount(){
     this.getWorksData()
   }
+
   render() {
     return (
       <div className="App">
@@ -35,8 +53,14 @@ class App extends Component {
         <Switch>
           <Route 
             exact path='/scribbls'
-            component={ExistingPosts}
-            works={this.state.works}
+            render={ () => 
+              (<ExistingPosts 
+                    selectedOption={this.state.selectedOption}
+                    handleChange={this.handleChange}
+                    searchedScribbls={this.state.searchedScribbls}
+              />)
+            }
+
           />
           <Route 
             path='/create-scribbl' 
