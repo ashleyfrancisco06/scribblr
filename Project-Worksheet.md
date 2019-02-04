@@ -22,6 +22,8 @@ You are **responsible** for scheduling time with your squad to seek approval for
 
 ## Project Description
 
+Scribblr:
+
 This is an application that allows writers to submit their works to then be reviewed by others on the site. It is essentially an online writers workshop where writers can receive feedback on work.
 
 ERD:
