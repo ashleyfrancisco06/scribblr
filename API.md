@@ -19,18 +19,18 @@ GET, POST, DELETE, PUT
 
  | request type | method |
  | --- | :---: |  
- | '/' | GET|
- | '/scribbls'| GET |
- | '/scribbls/search-results' | GET |
- | '/scribbls/:id'|  GET |
- | '/login' | GET |
- | '/login/sign-up' | POST |
- | '/create-scribbl' | POST |
+ | '/' | GET| complete |
+ | '/scribbls'| GET | complete |
+ | '/scribbls/search-results' | GET |  |
+ | '/scribbls/:id'|  GET | complete |
+ | '/login' | GET |  |
+ | '/login/sign-up' | POST | complete|
+ | '/create-scribbl' | POST | complete |
  | 'user/my-scribbls | GET|
- | 'user/profile' | GET |
+ | '/user-profile' | GET | complete |
  | read more button | GET| 
  | edit scribble button | PUT |
  | edit user info | PUT |
  | delete scribbl button | DELETE |
  | delete user account | DELETE |
- 
+
