@@ -1,4 +1,4 @@
-const { Users, Works, Comments } = require('../../models');
+const { User, Work, Comment } = require('../models/models');
 
 const main = async () => {
 
@@ -93,17 +93,15 @@ const main = async () => {
     await Work_Three.setUser(User_Three);
     await Work_Four.setUser(User_Four);
 
-    await Work_One.setComment(Comment_One);
-    await Work_Two.setComment(Comment_Two);
-    await Work_Three.setComment(Comment_Three);
-    await Work_Four.setComment(Comment_Four);
+    await Comment_One.setWork(Work_One);
+    await Comment_Two.setWork(Work_Two);
+    await Comment_Three.setWork(Work_Three);
+    await Comment_Four.setWork(Work_Four);
 
-    await User_One.setComment(Comment_One);
-    await User_Two.setComment(Comment_Two);
-    await User_Three.setComment(Comment_Three);
-    await User_Four.setComment(Comment_Four);
-
-
+    await Comment_One.setUser(User_One);
+    await Comment_Two.setUser(User_Two);
+    await Comment_Three.setUser(User_Three);
+    await Comment_Four.setUser(User_Four);
 
   process.exit()
   

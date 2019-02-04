@@ -33,4 +33,5 @@ GET, POST, DELETE, PUT
  | edit user info | PUT |
  | delete scribbl button | DELETE |
  | delete user account | DELETE |
+ |create comment | POST | complete|
 
