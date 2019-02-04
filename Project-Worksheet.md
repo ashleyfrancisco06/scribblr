@@ -28,7 +28,7 @@ This is an application that allows writers to submit their works to then be revi
 
 ERD:
 
-'../cash-project-3/assets/cash-project-erd.xml'
+![image](../cash-project-3/assets/cash-project-erd.xml)
 
 ## Wireframes
 
