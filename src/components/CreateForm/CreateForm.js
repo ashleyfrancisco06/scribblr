@@ -1,68 +1,82 @@
-// import React, {Component} from 'react'
-// import './CreateForm.css'
+import React, {Component} from 'react'
+import './CreateForm.css';
+import axios from 'axios';
 
-// class CreateForm extends Component {
-//     constructor() {
-//         super()
-//         this.state = {
-//            post: [],
-//             created: false
+class CreateForm extends Component {
+    constructor() {
+        super()
+        this.state = {
+           work: [],
+            created: false
 
-//         }
-//     }
 
-//     handleSubmit = (event) => {
-//         // alert(`You have chosen ${this.state.value}`)
-//         console.log('Scribbl submitted')
-//         event.preventDefault()
+        }
+    }
 
-//         let newPost = {
-//             type: this.state.type,
-//             title: this.state.title,
-//             content: this.state.content
-//         }
-//         console.log(newPost)
+    handleChange = (event) => {
+        const element = event.target
+        const { name , value } = element
 
-//         axios.post('/scribbls', newPost)
-//         .then(res => console.log(res.data));
+        const newState = {}
+        newState[name] = value
 
-//         this.setState({
-//             newPost: newPost,
-//             created: true
-//         })
-//     }
+        this.setState(newState)
 
-//     handleChange = (event) => {
-//         this.setState({
-//             value: event.target.value
-//         })
-//     }
-    
+        console.log(newState)
+    }
 
-    
+    handleSubmit = (event) => {
+        console.log('Scribbl submitted')
+        event.preventDefault()
 
-//     render() {
-//         return (
-//                 <form id='post-form' onSubmit={this.handleSubmit} onChange={this.handleChange}>
-//                     <input type='text' />
-//                     <select form='post-form' className='postDropdownSelect'>
-//                         <option value={this.state.value}>Select Genre</option>
-//                         <option value='short story'>Short Story</option>
-//                         <option value='poetry'>Poetry</option>
-//                         <option value='essay'>Essay</option>
-//                         <option value='misc'>Misc</option>
-//                     </select>
-//                     <br />
-//                     {/* <input type='text' className='postContent' /> */}
-//                     <textarea form='post-form' defaultValue='' placeholder='Work goes here...' className='postContent'></textarea>
-//                     <br />
-//                     <input type='submit' 
-//                     className='submitContent'
-//                     onSubmit={this.handleSubmit}
-//                      />
-//                 </form>
-//         )
-//     }
-// }
+        let newWork = {
+            // type: this.state.type,
+            title: this.state.title,
+            content: this.state.content
+        }
+        console.log(newWork)
 
-// export default CreateForm
+        axios.post('/create-scribbl', newWork)
+        .then(res => console.log(res.data));
+
+        this.setState({
+            newWork: newWork,
+            created: true
+        })
+    }
+
+    render() {
+        return (
+                <form id='post-form' 
+                onSubmit={this.handleSubmit}
+                 onChange={this.handleChange}>
+                    <label htmlFor="title">Title: </label>
+                    <input type='text'
+                    name='title'
+                    value={this.state.title} />
+                    {/* <select form='post-form' className='postDropdownSelect'>
+                        <option value={this.state.value}>Select Genre</option>
+                        <option value='Short Story'>Short Story</option>
+                        <option value='Poetry'>Poetry</option>
+                        <option value='Essay'>Essay</option>
+                        <option value='Misc'>Misc</option>
+                    </select> */}
+                    <br />
+                    {/* <input type='text' className='postContent' /> */}
+                    <textarea form='post-form'
+                    name='content'
+                     value={this.state.content}
+                      placeholder='Work goes here...'
+                       className='postContent'></textarea>
+                    <br />
+                    <button type='submit' 
+                    className='submitContent'
+                    onSubmit={this.handleSubmit}
+                    onChange={this.handleChange}
+                     >Submit</button>
+                </form>
+        )
+    }
+}
+
+export default CreateForm
