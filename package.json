@@ -27,5 +27,14 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "description": "## Project Description",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://git.generalassemb.ly/csheppard24/cash-project-3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
