@@ -28,7 +28,7 @@ This is an application that allows writers to submit their works to then be revi
 
 ERD:
 
-![image](../cash-project-3/assets/Image from iOS.jpg)
+![image](Image from iOS.jpg)
 
 ## Wireframes
 
