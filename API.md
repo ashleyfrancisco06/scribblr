@@ -18,6 +18,7 @@
 GET, POST, DELETE, PUT
 
  | request type | method |
+ | --- | :---: |  
  | '/' | GET|
  | '/scribbls'| GET |
  | '/scribbls/search-results' | GET |
