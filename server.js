@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express()
-const { User, Work, Comment } = require('./models');
+const { User, Work, Comment } = require('./src/models/models');
 const PORT = process.env.PORT || 3000
 const bodyParser = require('body-parser');
 
@@ -20,7 +20,7 @@ app.get('/scribbls', async (req, res) => {
     try {
 
         const scribbl = await Work.findAll()
-        res.json({scribbl})
+        res.json({ scribbl })
 
     } catch (e) {
         res.status(404).json({
@@ -33,7 +33,7 @@ app.get('/scribbls/:id', async (req, res) => {
     try {
         id = req.params.id
         const scribbl = await Work.findById(id)
-        res.json( {scribbl})
+        res.json({ scribbl })
 
     } catch (e) {
         res.status(404).json({
@@ -56,11 +56,11 @@ app.post('/create-scribbl', async (req, res) => {
 })
 
 // login route 
-app.get('/login', async(req,res)=>{
-    try{
-       const login = await User.findById(req.params.id)
-       res.json(login)
-    }catch(e){
+app.get('/login', async (req, res) => {
+    try {
+        const login = await User.findById(req.params.id)
+        res.json(login)
+    } catch (e) {
         res.status(404).json({
             message: e.message
         })
@@ -80,12 +80,12 @@ app.post('/login/sign-up', async (req, res) => {
     }
 })
 // user profile
-app.get('/user-profile/:id', async(req,res)=>{
-    try{
+app.get('/user-profile/:id', async (req, res) => {
+    try {
         const userid = req.params.id
         const profile = await User.findById(userid)
-        res.json({profile})
-    }catch(e){
+        res.json({ profile })
+    } catch (e) {
         res.status(404).json({
             message: e.message
         })
@@ -93,13 +93,13 @@ app.get('/user-profile/:id', async(req,res)=>{
 })
 
 // create comment
-app.post('/scribbls/:id/comment', async(req,res)=>{
-    try{
+app.post('/scribbls/:id/comment', async (req, res) => {
+    try {
 
         const comment = await Comment.create(req.body)
-        res.json({comment})
+        res.json({ comment })
 
-    }catch(e){
+    } catch (e) {
         res.status(404).json({
             message: e.message
         })
@@ -108,16 +108,34 @@ app.post('/scribbls/:id/comment', async(req,res)=>{
 
 //delete user
 
-app.delete('/user-profile/:id', async(req,res)=>{
-    try{
+app.delete('/user-profile/:id', async (req, res) => {
+    try {
         const userid = req.params.id
         const user = await User.destroy({
             where: {
-                id : userid
+                id: userid
             }
         })
-        res.json({message: `User {user} was deleted.`})
-    }catch(e){
+        res.json({ message: `User ${user} was deleted.` })
+    } catch (e) {
+        res.status(404).json({
+            message: e.message
+        })
+    }
+})
+
+// delete comment
+app.delete('/scribbls/:id/comment', async (req, res) => {
+    try {
+        const commentid = req.params.id
+        const comment = await Comment.destroy({
+            where: {
+                id : commentid
+            } 
+        })
+        res.json({message: `Comment ${comment} was deleted.`})
+
+    } catch (e) {
         res.status(404).json({
             message: e.message
         })
