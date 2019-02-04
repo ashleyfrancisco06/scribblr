@@ -45,10 +45,10 @@ Include a full list of features that have been prioritized based on the `Time an
 
 
 |  Item | Priority | Estimated Time | Actual Time | Total Time
-|---|---| ---|---| -- |
-| --- | ---| -hs | -hs | -hs |
-| --- | --- |-hs | -hs | -hs |
-| --- | --- | -hs | -hs | -hs |
+|a|---| ---|---| -- |
+| b | ---| -hs | -hs | -hs |
+| c | --- |-hs | -hs | -hs |
+| d | --- | -hs | -hs | -hs |
 | --- | --- | -hs | -hs | -hs |
 | --- | --- | -hs | -hs | -hs |
 | --- | --- | -hs | -hs | -hs |
