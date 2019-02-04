@@ -20,6 +20,9 @@ const Work = db.define('works', {
     type: {
         type: Sequelize.STRING
     },
+    title: {
+        type: Sequelize.STRING
+    },
     content: {
         type: Sequelize.TEXT
     }
