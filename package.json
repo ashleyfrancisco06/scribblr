@@ -17,7 +17,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "nodemon server.js"
+    "db:init": "dropdb --if-exists scribblr_db && createdb scribblr_db",
+    "server": "nodemon server.js",
+    "db:models": "node ./src/models/models.js",
+    "db:seed": "node ./src/scripts/seed.js",
+    "db:reset": "node ./src/scripts/resetdb.js"
   },
   "eslintConfig": {
     "extends": "react-app"
