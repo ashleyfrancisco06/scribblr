@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import CreateForm from '../CreateForm/CreateForm'
 
 class CreatePost extends Component {
     constructor() {
@@ -7,7 +8,7 @@ class CreatePost extends Component {
     render() {
         return (
             <div className='createPost'>
-                <h1>Testing</h1>
+                <CreateForm />
             </div>
         )
     }
