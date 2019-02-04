@@ -72,6 +72,7 @@ The functionality will then be divided into two separate lists: MPV and PostMVP.
 ## React Architectural Design
 
 Below is a link to our File Structure:
+[Architectural Design](https://res.cloudinary.com/chucksheppard/image/upload/v1549251147/Project%203%20Component%20Hierarchy/Project%203%20Component%20Hierarchy.jpg)
 
 
 ## Functional Components
