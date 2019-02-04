@@ -1,4 +1,4 @@
-# CASH-project-3 (this will change)
+# Scribblr
 
 ## Project Description
 
