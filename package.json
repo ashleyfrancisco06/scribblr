@@ -1,6 +1,7 @@
 {
   "name": "cash-project-3",
   "version": "0.1.0",
+  "proxy": "http://localhost:4567",
   "private": true,
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -22,8 +23,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "db:init": "dropdb --if-exists scribblr_db && createdb scribblr_db",
+    "dev": "concurrently \"npm run server\" \"npm start\"",
     "server": "nodemon server.js",
-    "db:models": "node ./src/models/models.js",
     "db:seed": "node ./src/scripts/seed.js",
     "db:reset": "node ./src/scripts/resetdb.js"
   },

@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express()
 const { User, Work, Comment } = require('./src/models/models');
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 4567
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
     try {
         res.json('HELLO WORLD')
     } catch (e) {
-        res.status(404).json({
+        res.status(500).json({
             message: e.message
         })
     }
@@ -23,7 +23,7 @@ app.get('/scribbls', async (req, res) => {
         res.json({ scribbl })
 
     } catch (e) {
-        res.status(404).json({
+        res.status(500).json({
             message: e.message
         })
     }
@@ -36,7 +36,7 @@ app.get('/scribbls/:id', async (req, res) => {
         res.json({ scribbl })
 
     } catch (e) {
-        res.status(404).json({
+        res.status(500).json({
             message: e.message
         })
     }
@@ -49,7 +49,7 @@ app.post('/create-scribbl', async (req, res) => {
         res.json({ scribbl })
 
     } catch (e) {
-        res.status(404).json({
+        res.status(500).json({
             message: e.message
         })
     }
@@ -61,7 +61,7 @@ app.get('/login', async (req, res) => {
         const login = await User.findById(req.params.id)
         res.json(login)
     } catch (e) {
-        res.status(404).json({
+        res.status(500).json({
             message: e.message
         })
     }
@@ -74,7 +74,7 @@ app.post('/login/sign-up', async (req, res) => {
         res.json(user)
 
     } catch (e) {
-        res.status(404).json({
+        res.status(500).json({
             message: e.message
         })
     }
@@ -86,7 +86,7 @@ app.get('/user-profile/:id', async (req, res) => {
         const profile = await User.findById(userid)
         res.json({ profile })
     } catch (e) {
-        res.status(404).json({
+        res.status(500).json({
             message: e.message
         })
     }
@@ -98,7 +98,7 @@ app.get('/comments', async(req,res)=>{
         const comments = await Comment.findAll()
         res.json({comments})
     }catch(e){
-        res.status(404).json({
+        res.status(500).json({
             message: e.message
         })
     }
@@ -113,7 +113,7 @@ app.post('/scribbls/:id/comment', async (req, res) => {
         res.json({ comment })
 
     } catch (e) {
-        res.status(404).json({
+        res.status(500).json({
             message: e.message
         })
     }
@@ -131,7 +131,7 @@ app.delete('/user-profile/:id', async (req, res) => {
         })
         res.json({ message: `User ${user} was deleted.` })
     } catch (e) {
-        res.status(404).json({
+        res.status(500).json({
             message: e.message
         })
     }
@@ -149,7 +149,7 @@ app.delete('/scribbls/:id/comment', async (req, res) => {
         res.json({message: `Comment ${comment} was deleted.`})
 
     } catch (e) {
-        res.status(404).json({
+        res.status(500).json({
             message: e.message
         })
     }
