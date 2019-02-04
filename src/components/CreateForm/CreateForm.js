@@ -29,7 +29,7 @@ class CreateForm extends Component {
         event.preventDefault()
 
         let newWork = {
-            // type: this.state.type,
+            type: this.state.type,
             title: this.state.title,
             content: this.state.content
         }
@@ -58,15 +58,18 @@ class CreateForm extends Component {
                     <input type='text'
                     name='title'
                     value={this.state.title} />
-                    {/* <select form='post-form' className='postDropdownSelect'>
+                    <select form='post-form'
+                    value={this.state.type}
+                    name='type'
+                    className='postDropdownSelect'>
                         <option value={this.state.value}>Select Genre</option>
                         <option value='Short Story'>Short Story</option>
                         <option value='Poetry'>Poetry</option>
                         <option value='Essay'>Essay</option>
                         <option value='Misc'>Misc</option>
-                    </select> */}
+                    </select>
                     <br />
-                    {/* <input type='text' className='postContent' /> */}
+                   
                     <textarea form='post-form'
                     name='content'
                      value={this.state.content}
