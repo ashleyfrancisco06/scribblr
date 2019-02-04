@@ -9,7 +9,7 @@ You are **responsible** for scheduling time with your squad to seek approval for
 |  Day | Deliverable | Status
 |---|---| ---|
 |Day 1| Project Description | Complete
-|Day 1| Wireframes / Priority Matrix / Architecture / ERD | Incomplete
+|Day 1| Wireframes / Priority Matrix / Architecture / ERD | Complete
 |Day 2| Core Application Structure (React, Express and Sequelize Files) | Incomplete
 |Day 2| Pseudocode / actual code | Incomplete
 |Day 3| Basic Functions Working (Independently) | Incomplete
