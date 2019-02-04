@@ -5,13 +5,31 @@ class CreateForm extends Component {
     constructor() {
         super()
         this.state = {
-            value: ''
+           post: [],
+            created: false
+
         }
     }
 
     handleSubmit = (event) => {
-        alert(`You have chosen ${this.state.value}`)
+        // alert(`You have chosen ${this.state.value}`)
+        console.log('Scribbl submitted')
         event.preventDefault()
+
+        let newPost = {
+            type: this.state.type,
+            title: this.state.title,
+            content: this.state.content
+        }
+        console.log(newPost)
+
+        axios.post('/scribbls', newPost)
+        .then(res => console.log(res.data));
+
+        this.setState({
+            newPost: newPost,
+            created: true
+        })
     }
 
     handleChange = (event) => {
@@ -19,6 +37,7 @@ class CreateForm extends Component {
             value: event.target.value
         })
     }
+    
 
     
 
@@ -37,7 +56,10 @@ class CreateForm extends Component {
                     {/* <input type='text' className='postContent' /> */}
                     <textarea form='post-form' defaultValue='' placeholder='Work goes here...' className='postContent'></textarea>
                     <br />
-                    <input type='submit' className='submitContent' />
+                    <input type='submit' 
+                    className='submitContent'
+                    onSubmit={this.handleSubmit}
+                     />
                 </form>
         )
     }
