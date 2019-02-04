@@ -71,7 +71,7 @@ The functionality will then be divided into two separate lists: MPV and PostMVP.
 
 ## React Architectural Design
 
-Below is a link to our File Structure:
+Here you will find our architectural design:
 [Architectural Design](https://res.cloudinary.com/chucksheppard/image/upload/v1549251147/Project%203%20Component%20Hierarchy/Project%203%20Component%20Hierarchy.jpg)
 
 
@@ -81,11 +81,13 @@ Based on the initial logic defined in the previous sections try and breakdown th
 
 | Component | Description | 
 | --- | :---: |  
-| Component | Description | 
-| Component | Description | 
-| Component | Description |
-| Component | Description |
-| Component | Description |
+| App | Holds the base of our project and routes via react-router |
+| Header | Contains navigation for the app. | 
+| Footer | Contains social links, copywrite, as well as contact. | 
+| PostWork | Where users can post new works to be held in database. |
+| ExistingWorks | Works in databse created by users. |
+| PostForm | Where users can post new content to share. |
+| SignIn | Form for users to create profiles and sign into existing profiles. |
 
 
 ## Helper Functions
