@@ -1,0 +1,6 @@
+[
+    {"label": "Poetry", "value": "poetry"},
+    {"label": "Short Story", "value": "short_story"},
+    {"label": "Essay", "value": "essay"},
+    {"label": "Miscellaneous", "value": "misc"}
+]

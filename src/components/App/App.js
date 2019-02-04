@@ -6,6 +6,13 @@ import CreatePost from '../CreatePost/CreatePost'
 import ExistingPosts from '../ExistingPosts/ExistingPosts';
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -13,7 +20,11 @@ class App extends Component {
         <Switch>
           <Route 
             exact path='/scribbls'
-            component={ExistingPosts}
+            render={ () => 
+              (<ExistingPosts 
+                    // selectedOption={this.state.selectedOption}
+              />)
+            }
           />
           <Route 
             path='/create-scribbl' 

@@ -46,25 +46,25 @@ const main = async () => {
 
     const Work_One = await Work.create({
         title: 'Hope is the Thing With Feathers',
-        type:'Poetry',
+        type:'poetry',
         content:'Hope is the thing with feathers - That perches in the soul - And sings the tune without the words - And never stops at all'
     })
 
     const Work_Two = await Work.create({
         title: 'The Hobbit',
-        type:'Short Story',
+        type:'short_story',
         content:'In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means comfort'
     })
 
     const Work_Three = await Work.create({
         title: 'Pride and Prejudice ',
-        type:'Short Story',
+        type:'short_story',
         content:'It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.'
     })
 
     const Work_Four = await Work.create({
         title: 'Blowin in the Wind',
-        type:'Misc',
+        type:'misc',
         content:'The answer, my friend, is blowin in the wind - The answer is blowin in the wind'
     })
 
