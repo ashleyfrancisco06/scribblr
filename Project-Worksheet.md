@@ -81,13 +81,13 @@ Based on the initial logic defined in the previous sections try and breakdown th
 
 | Component | Description | 
 | --- | :---: |  
-| App | Holds the base of our project and routes via react-router |
-| Header | Contains navigation for the app. | 
-| Footer | Contains social links, copywrite, as well as contact. | 
-| PostWork | Where users can post new works to be held in database. |
-| ExistingWorks | Works in databse created by users. |
-| PostForm | Where users can post new content to share. |
-| SignIn | Form for users to create profiles and sign into existing profiles. |
+| App (Stateful) | Holds the base of our project and routes via react-router |
+| Header (Stateless) | Contains navigation for the app. | 
+| Footer (Stateless) | Contains social links, copywrite, as well as contact. | 
+| PostWork (Stateful) | Where users can post new works to be held in database. |
+| ExistingWorks (Stateless) | Works in databse created by users. |
+| PostForm (Stateful) | Where users can post new content to share. |
+| SignIn (Stateful) | Form for users to create profiles and sign into existing profiles. |
 
 
 ## Helper Functions
