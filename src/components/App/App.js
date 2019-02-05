@@ -63,10 +63,10 @@ class App extends Component {
               />)
             }
           />
-
+{/* 
           <Route
-            path='/login'
-            component={RenderLogin} />
+            path={'/login'}
+            component={RenderLogin} /> */}
           <Route
             path='/create-scribbl'
             component={CreatePost}

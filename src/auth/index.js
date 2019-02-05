@@ -36,7 +36,7 @@ router.post('/signup', (req, res, next) => {
         .then(user => {
             console.log('user', user)
             if(!user) {
-                bcrypt.hash(req.body.password, saltRounds) // saltRounds is number of times, more is stronger
+                bcrypt.hash(req.body.password, 8) // saltRounds is number of times, more is stronger
                     .then(hash => {
                        
                         const user = {

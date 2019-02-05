@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from "react-router-dom"
 import "./login.css"
 
 // https://www.youtube.com/watch?v=OWYxMCfcTbY this video helped with login and sign up forms for front end( React)
@@ -12,8 +13,9 @@ class Login extends Component {
     }
 
     submitLogin(e) {
-        
-     }
+        // if login successful...
+        return <Redirect to='/scribbls'/>
+    }
     render() {
         return (
             <div className='inner-container'>
