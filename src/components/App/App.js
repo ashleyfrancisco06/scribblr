@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
-import {Switch, Route} from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import './App.css';
 import Header from '../Header/Header'
 import CreatePost from '../CreatePost/CreatePost'
 import ExistingPosts from '../ExistingPosts/ExistingPosts';
 import axios from 'axios';
+import RenderLogin from "../RenderLogin-SignUp/RenderLogin-SignUp"
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super()
-    this.state ={
+    this.state = {
       selectedOption: null,
       works: [],
       searchedScribbls: null
     }
- 
+
   }
 
   handleChange = (selectedOption) => {
     const value = selectedOption.value
-    this.setState({selectedOption: selectedOption.value})
+    this.setState({ selectedOption: selectedOption.value })
     this.loadData(value)
   }
 
@@ -28,21 +29,21 @@ class App extends Component {
     const res = await axios.get(`/scribbls/byType/${value}`)
     const searchedScribbls = res.data.scribbls
     this.setState({
-        searchedScribbls
+      searchedScribbls
     })
   }
 
-  getWorksData = () =>{
+  getWorksData = () => {
     axios.get('/scribbls')
-    .then((response)=>{
-      const works = response.data.works
-      this.setState({
-        works: works
-      });
-    })
+      .then((response) => {
+        const works = response.data.works
+        this.setState({
+          works: works
+        });
+      })
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getWorksData()
   }
 
@@ -51,21 +52,26 @@ class App extends Component {
       <div className="App">
         <Header />
         <Switch>
-          <Route 
+
+          <Route
             exact path='/scribbls'
-            render={ () => 
-              (<ExistingPosts 
-                    selectedOption={this.state.selectedOption}
-                    handleChange={this.handleChange}
-                    searchedScribbls={this.state.searchedScribbls}
+            render={() =>
+              (<ExistingPosts
+                selectedOption={this.state.selectedOption}
+                handleChange={this.handleChange}
+                searchedScribbls={this.state.searchedScribbls}
               />)
             }
-
           />
-          <Route 
-            path='/create-scribbl' 
+
+          <Route
+            path='/login'
+            component={RenderLogin} />
+          <Route
+            path='/create-scribbl'
             component={CreatePost}
           />
+
         </Switch>
       </div>
     );
