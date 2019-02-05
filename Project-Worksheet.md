@@ -46,19 +46,19 @@ Include a full list of features that have been prioritized based on the `Time an
 
 |  Item | Priority | Estimated Time | Actual Time | Total Time
 |---|---| ---|---| -- |
-| a | HI| 1hs | -hs | -hs |
-| b | HI|1hs | -hs | -hs |
-| c| HI | 2hs | -hs | -hs |
-|d | HI | 1hs | -hs | -hs |
-|e | HI| 2hs | -hs | -hs |
-| f | HI | 3hs | -hs | -hs |
-|g |HI| 1hs | -hs | -hs |
-| h |HI| 1hs | -hs | -hs |
-|i|HI | 2hs | -hs | -hs |
-| j |  HI| 1hs | -hs | -hs |
-|k |LOW| 3hs | -hs | -hs |
-|l | LOW | 3hs | -hs | -hs |
-|m | LOW| 4hs | -hs | -hs |
+| create Components | HI| 1hs | 45min | 45min |
+| Setup server file | HI|1hs | 1.5hs | 2.25hs |
+| Setup models.js | HI | 2hs | 45min | 3hs |
+| Setup seed.js | HI | 30min | 1hs | 3.5hs |
+| Setup routing | HI| 2hs | 2hs | 5.5hs |
+| Add data to seed.js | HI | 3hs | 30min | 6hs |
+| Setup POST functionality |HI| 1hs | 1hs | 7hs |
+| Setup DELETE functionality |HI| 1hs | -hs | -hs |
+| Search (GET) functionality |HI | 2hs | 1hs | 8hs |
+| Setup UPDATE functionality |  HI| 1hs | -hs | -hs |
+| Login/out function (PMVP) |LOW| 3hs | -hs | -hs |
+| User Authentication (PVMP) | LOW | 6hs | -hs | -hs |
+| Categorical functionality (PMVP)| LOW| 3hs | -hs | -hs |
 | TOTAL |  | 25hrs | |
 
 ### MVP/PostMVP - 5min
