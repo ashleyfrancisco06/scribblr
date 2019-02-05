@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Select from "react-select"
-import genres from "../../genres.json"
-// import axios from "axios"
+import genres from "../../scripts/genres.json"
 
 const genreOptions = genres.map((genre) => (
     {value: genre.value, label: genre.label}
@@ -9,18 +8,6 @@ const genreOptions = genres.map((genre) => (
 
 const ExistingPosts = (props) => {
     console.log(props)
-    // handleChange = (selectedOption) => {
-    //     const value = selectedOption.value
-    //     this.setState({selectedOption: selectedOption.value})
-    //     this.loadData(value)
-    // }
-
-    // loadData = async (value) => {
-    //     const scribbls = await axios.get('/scribbls')
-    //     this.setState({
-    //         allScribbls: scribbls
-    //     })
-    // }
     const getCurrentScribbls = () => {
         const currentScribbls = props.searchedScribbls.map((scribbl, key) => {
             return (
@@ -32,7 +19,6 @@ const ExistingPosts = (props) => {
         })
         return currentScribbls
     }
-    // render() {
         return (
             <div>
                 <Select
@@ -43,7 +29,6 @@ const ExistingPosts = (props) => {
                 {props.searchedScribbls && getCurrentScribbls()}
             </div>
         )
-        // }
 }
 
 export default ExistingPosts
