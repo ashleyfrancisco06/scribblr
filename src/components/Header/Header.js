@@ -10,6 +10,7 @@ const Header = () => {
             <nav className='nav'>
                 <Link to={'/create-scribbl'}>Create Scribbl</Link>
                 <Link to={'/scribbls'}>Home</Link>
+                <Link to={'/login'}>Login</Link>
 
             </nav>
             <h3>A Hub for Literary Expression</h3>
