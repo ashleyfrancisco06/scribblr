@@ -41,7 +41,7 @@ https://balsamiq.cloud/s42mh39/pyr8oww
 
 Include a full list of features that have been prioritized based on the `Time and Importance` Matrix. 
 
-<img src='IMG_6003.jpg' />
+<img src='./assets/IMG_6003.jpg' />
 
 
 |  Item | Priority | Estimated Time | Actual Time | Total Time
