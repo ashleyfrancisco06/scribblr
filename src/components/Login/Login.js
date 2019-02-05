@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Redirect } from "react-router-dom"
+import { Route, Redirect } from "react-router-dom"
 import "./login.css"
+import App from '../App/App';
 
 // https://www.youtube.com/watch?v=OWYxMCfcTbY this video helped with login and sign up forms for front end( React)
 
@@ -12,13 +13,17 @@ class Login extends Component {
         this.state = {};
     }
 
-    submitLogin(e) {
+    submitLogin = (e) => {
+        e.preventDefault()
         // if login successful...
-        return <Redirect to='/scribbls'/>
+        return <Redirect to='/home'/>
     }
     render() {
         return (
             <div className='inner-container'>
+                <Route path='/home'
+                       component={App}
+                />
                 <div className='header'>
                     Login
                 </div>
@@ -45,7 +50,7 @@ class Login extends Component {
                     <button type="button"
                         className="login-button"
                         // whenever user clicks, event will pop upand put the callback inside 
-                        onClick={this.submitLogin.bind(this)}>
+                        onClick={this.submitLogin}>
                         Login</button>
 
                 </div>

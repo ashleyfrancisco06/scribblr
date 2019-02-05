@@ -4,8 +4,8 @@ import './App.css';
 import Header from '../Header/Header'
 import CreatePost from '../CreatePost/CreatePost'
 import ExistingPosts from '../ExistingPosts/ExistingPosts';
+import RenderLogin from '../RenderLogin-SignUp/RenderLogin-SignUp';
 import axios from 'axios';
-import RenderLogin from "../RenderLogin-SignUp/RenderLogin-SignUp"
 
 class App extends Component {
   constructor() {
@@ -53,8 +53,12 @@ class App extends Component {
         <Header />
         <Switch>
 
+        <Route
+            exact path={'/login'}
+            component={RenderLogin} />
+
           <Route
-            exact path='/scribbls'
+            path='/scribbls'
             render={() =>
               (<ExistingPosts
                 selectedOption={this.state.selectedOption}
@@ -63,10 +67,7 @@ class App extends Component {
               />)
             }
           />
-{/* 
-          <Route
-            path={'/login'}
-            component={RenderLogin} /> */}
+ 
           <Route
             path='/create-scribbl'
             component={CreatePost}
