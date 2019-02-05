@@ -84,7 +84,7 @@ app.get('/login', async (req, res) => {
 })
 
 //create new user 
-app.post('/login/sign-up', async (req, res) => {
+app.post('/signup', async (req, res) => {
     try {
         const user = await User.create()
         res.json(user)
