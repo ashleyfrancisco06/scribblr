@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './CreateForm.css';
 import axios from 'axios';
+import genres from "../../scripts/genres.json"
 
 class CreateForm extends Component {
     constructor() {
@@ -44,6 +45,15 @@ class CreateForm extends Component {
             created: true
         })
     }
+
+    getOptions = () => {
+        const genreOptions = genres.map((genre, key) => {
+            return(
+                <option key={key} value={genre.value}>{genre.label}</option>
+            )
+        })
+        return genreOptions
+    }
     
     render() {
         return (
@@ -60,10 +70,7 @@ class CreateForm extends Component {
                     name='type'
                     className='postDropdownSelect'>
                     <option value={this.state.value}>Select Genre</option>
-                    <option value='Short Story'>Short Story</option>
-                    <option value='Poetry'>Poetry</option>
-                    <option value='Essay'>Essay</option>
-                    <option value='Misc'>Misc</option>
+                    { this.getOptions() }
                 </select>
                 <br />
 
