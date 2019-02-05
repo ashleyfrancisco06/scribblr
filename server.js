@@ -258,37 +258,44 @@ app.post('/auth/signup', (req, res) => {
     }
 })
 
-// app.post('/login', (req, res) => { //going to the /auth route
-//     if(validateUser(req.body)) {
-//         //check to see if in database
-//         getUserbyEmail(req.body.email).then(user => {
-//             if(user){
-//                 //compare pwds
-//                 bcrypt.compare(req.body.password, user.password).then(result => { //user.password is the hashed password from the db
-//                     // if passwords match
-//                     if (result) {
-//                         //set cookie header
-//                         res.cookie('user_id', user.id, {
-//                             httpOnly: true, // only accessible to web server
-//                             signed: true, // best practices
-//                             secure: true // makes work on https only, wont work while in development
-//                         })
-//                         res.json({
-//                             result,
-//                             message: 'logged in'
-//                         })
-//                     } else {
-//                         //invalid login error
-//                     }
-//                 })
-//             }else{
-//                 //invalid login error
-//             }
-//         })
-//     } else {
-//         // Error message = "invalid email"
-//     }
-// })
+app.post('/auth/login', (req, res) => { //going to the /auth route
+    if(validateUser(req.body)) {
+        //check to see if in database
+        getUserbyEmail(req.body.email).then(user => {
+            if(user){
+                //compare pwds
+                bcrypt.compare(req.body.password, user.password).then(result => { //user.password is the hashed password from the db
+                    // if passwords match
+                    res.json({
+                        message: `User ${user.user_name} and ${result}`
+                    })
+            //         if (result) {
+            //             //set cookie header
+            //             res.cookie('user_id', user.id, {
+            //                 httpOnly: true, // only accessible to web server
+            //                 signed: true, // best practices
+            //                 secure: true // makes work on https only, wont work while in development
+            //             })
+            //             res.json({
+            //                 result,
+            //                 message: 'logged in'
+            //             })
+            //         } else {
+            //             //invalid login error
+            //         }
+                })
+            }else{
+                res.json({
+                    message: "Invalid User"
+                })
+            }
+        })
+    } else {
+        res.json({
+            message: "Please Sign-Up to continue"
+        })
+    }
+})
 
 
 app.listen(PORT, () => console.log(`Example app listening on ${PORT}`))
