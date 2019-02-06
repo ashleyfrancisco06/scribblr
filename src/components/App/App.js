@@ -7,6 +7,7 @@ import ExistingPosts from '../ExistingPosts/ExistingPosts';
 import RenderLogin from '../RenderLogin-SignUp/RenderLogin-SignUp';
 import axios from 'axios';
 import SingleScribbl from "../SingleScribbl/SingleScribbl"
+import UpdateForm from "../UpdateForm/UpdateForm"
 
 class App extends Component {
   constructor() {
@@ -100,7 +101,7 @@ class App extends Component {
           <Route 
             path = "/scribbls/:id"
             render={(props)=>(
-              <SingleScribbl {...props} scribbl = {this.state.scribblw}/> 
+              <SingleScribbl {...props} scribbl = {this.state.scribbl}/> 
             )}
             />
 

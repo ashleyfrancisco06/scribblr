@@ -79,6 +79,28 @@ app.post('/create-scribbl', async (req, res) => {
     }
 })
 
+//update scribbl
+
+app.put('/scribbl:id', async (req, res) =>{
+    try {
+        const id = req.params.id
+        const updatedScribl = {
+          title: req.body.title,
+          content: req.body.content,
+          type: req.body.type
+        };
+        const scribbl = await Work.update(updatedScribl, { where: {id: id} })
+        res.json(scribbl)
+      } catch(e) {
+        console.error(e)
+        res.status(500).json({message: e.message})
+      }
+    
+    });
+
+
+      
+
 // login route 
 // app.get('/login', async (req, res) => {
 //     try {
