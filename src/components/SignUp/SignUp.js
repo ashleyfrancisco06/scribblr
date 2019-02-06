@@ -1,17 +1,39 @@
 import React, { Component } from 'react'
 import "../Login/login.css"
+import Axios from 'axios';
 class SignUp extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {};
+        this.state = {
+
+        };
     }
 
-    submitSignUp(e) {
+    handleChange = (e) => {
+        const element = e.target
+        const { name, value } = element
+
+        const newState = {}
+        newState[name] = value
+
+        this.setState(newState)
+    }
+
+    submitSignUp = (e) => {
+        e.preventDefault()
         console.log("clicked")
-        console.log(e.target.name)
-        console.log(e.target.value)
-    
+        
+        const user = {
+            user_name: this.state.user_name,
+            email: this.state.email,
+            password: this.state.password
+        }
+
+        console.log(`user info: ${user}`)
+
+        Axios.post('/auth/signup', user)
+            .then(res => console.log(res.data))
      }
     render() {
         return (
@@ -23,9 +45,10 @@ class SignUp extends Component {
                 <div className='box'>
                     {/* Username field */}
                     <div className='input-group'>
-                        <label htmlFor='username'>Username: </label>
+                        <label htmlFor='user_name'>Username: </label>
                         <input type='text'
-                            name='username'
+                            name='user_name'
+                            onChange={this.handleChange}
                             className='signup-input'
                             placeholder='Username' />
                     </div>
@@ -33,6 +56,7 @@ class SignUp extends Component {
                         <label htmlFor='email'>E-mail: </label>
                         <input type='text'
                         name='email'
+                        onChange={this.handleChange}
                         className='signup-input'
                         placeholder='E-mail'
                         />
@@ -42,6 +66,7 @@ class SignUp extends Component {
                         <label htmlFor='password'>Password: </label>
                         <input type='password'
                             name='password'
+                            onChange={this.handleChange}
                             className='signup-input'
                             placeholder='Password' />
                     </div>
