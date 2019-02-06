@@ -7,8 +7,8 @@ import ExistingPosts from '../ExistingPosts/ExistingPosts';
 import RenderLogin from '../RenderLogin-SignUp/RenderLogin-SignUp';
 import axios from 'axios';
 import SingleScribbl from "../SingleScribbl/SingleScribbl"
-import Container from "../Container/Container"
-import UpdateForm from "../UpdateForm/UpdateForm"
+// import UpdateForm from "../UpdateForm/UpdateForm"
+
 
 class App extends Component {
   constructor() {
