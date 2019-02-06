@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './UpdateForm.css';
+// import './UpdateForm.css';
 import axios from 'axios';
 import genres from "../../scripts/genres.json"
 

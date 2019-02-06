@@ -2,7 +2,7 @@ import React from 'react'
 import Select from "react-select"
 import {Link} from 'react-router-dom'
 import genres from "../../scripts/genres.json"
-import axios from 'axios'
+
 
 
 const genreOptions = genres.map((genre) => (
@@ -18,7 +18,7 @@ const ExistingPosts = (props) => {
             return (
             
                 <div id={scribbl.id} onClick={props.selectScribbl} key = {key}>
-                <Link to={{pathname: `/scribbls/${scribbl.id}`, state: scribbl}}>
+                <Link id={scribbl.id}  onClick={props.selectScribbl}  to={{pathname: `/scribbls/${scribbl.id}`, state: scribbl}}>
                     <h1>{scribbl.title}</h1>
                     <p>{scribbl.content}</p>
                     </Link>
