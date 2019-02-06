@@ -24,6 +24,7 @@ class App extends Component {
 
   }
 
+  
 
   selectScribbl = (e) => {
     let scribblId = e.currentTarget.id
@@ -80,11 +81,11 @@ class App extends Component {
             exact path='/'
             render={
               () => (
-                this.state.isLoggedIn ? (
-                  <Redirect to="/scribbls/" />
-                ) : (
+                // this.state.isLoggedIn ? (
+                //   <Redirect to="/scribbls/" />
+                // ) : (
                     <RenderLogin />
-                  )
+                  // )
               )
             }
           />
@@ -92,11 +93,11 @@ class App extends Component {
              path='*'
             render={
               () => (
-                this.state.isLoggedIn ? (
+                // this.state.isLoggedIn ? (
                   <Container />
-                ) : (
-                    <Redirect to="/" />
-                  )
+                // ) : (
+                //     <Redirect to="/" /> // This is
+                //   )
               )
             }
           />

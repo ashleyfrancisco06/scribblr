@@ -36,7 +36,7 @@ class UpdateForm extends Component {
         }
         console.log(updateWork)
 
-        axios.put('/scribbls/:id', updateWork)
+        axios.put('/user/scribbls/:id', updateWork) //changed route to match server
             .then(res => console.log(res.data));
 
         this.setState({

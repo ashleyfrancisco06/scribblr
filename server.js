@@ -4,12 +4,13 @@ const cookieParser = require('cookie-parser')
 const { User, Work, Comment } = require('./src/models/models');
 const PORT = process.env.PORT || 4567
 const bodyParser = require('body-parser');
+const authMiddleware = require('./src/auth/authMiddleware')
 
 const secret = process.env.COOKIE_SECRET || 'super_secret_cookie_secret'
-console.log(secret)
 
 app.use(bodyParser.json());
-app.use(cookieParser(secret))
+app.use(cookieParser(secret));
+app.use('/user', authMiddleware.isLoggedIn)
 
 // Splash Page
 app.get('/', async (req, res) => {
@@ -45,7 +46,7 @@ app.get('/scribbls', async (req, res) => {
 // individual works by id 
 app.get('/scribbls/:id', async (req, res) => {
     try {
-        id = req.params.id
+        const id = req.params.id
         const scribbl = await Work.findById(id)
         res.json({ scribbl })
 
@@ -73,7 +74,7 @@ app.get('/scribbls/byType/:type', async (req, res) => {
 })
 
 //create new scribbl 
-app.post('/create-scribbl', async (req, res) => {
+app.post('/user/create-scribbl', async (req, res) => {
     try {
         const scribbl = await Work.create(req.body)
         res.json({ scribbl })
@@ -87,7 +88,7 @@ app.post('/create-scribbl', async (req, res) => {
 
 //update scribbl
 
-app.put('/scribbl:id', async (req, res) =>{
+app.put('/user/scribbl/:id', async (req, res) =>{
     try {
         const id = req.params.id
         const updatedScribl = {
@@ -103,35 +104,6 @@ app.put('/scribbl:id', async (req, res) =>{
       }
     
     });
-
-
-      
-
-// login route 
-// app.get('/login', async (req, res) => {
-//     try {
-//         const login = await User.findById(req.params.id)
-//         res.json(login)
-//     } catch (e) {
-//         res.status(500).json({
-//             message: e.message
-//         })
-//     }
-// })
-
-//create new user 
-// I have commented this out because I am building this into the auth/signup route
-// app.post('/login/sign-up', async (req, res) => {
-//     try {
-//         const user = await User.create()
-//         res.json(user)
-
-//     } catch (e) {
-//         res.status(500).json({
-//             message: e.message
-//         })
-//     }
-// })
 
 // user profile
 app.get('/user-profile/:id', async (req, res) => {
@@ -159,7 +131,7 @@ app.get('/comments', async (req, res) => {
 })
 
 // create comment
-app.post('/scribbls/:id/comment', async (req, res) => {
+app.post('/user/scribbls/:id/comment', async (req, res) => {
     try {
         console.log(req.body)
 
@@ -175,7 +147,7 @@ app.post('/scribbls/:id/comment', async (req, res) => {
 
 //delete user
 
-app.delete('/user-profile/:id', async (req, res) => {
+app.delete('/user/user-profile/:id', async (req, res) => {
     try {
         const userid = req.params.id
         const user = await User.destroy({
@@ -192,7 +164,7 @@ app.delete('/user-profile/:id', async (req, res) => {
 })
 
 // delete comment
-app.delete('/scribbls/:id/comment', async (req, res) => {
+app.delete('/user/scribbls/:id/comment', async (req, res) => {
     try {
         const commentid = req.params.id
         const comment = await Comment.destroy({
@@ -299,6 +271,7 @@ app.post('/auth/login', (req, res) => { //going to the /auth route
                         })
                         res.json({
                             result,
+                            user_id: user.id,
                             message: `logged in ${result} as ${user.user_name}`
                         })
                     } else {

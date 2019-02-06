@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import { Route, Switch, Redirect } from "react-router-dom"
 import "./login.css"
 import App from '../App/App';
-import Container from "../Container/Container"
 import Axios from "axios"
 
 // https://www.youtube.com/watch?v=OWYxMCfcTbY this video helped with login and sign up forms for front end( React)
 
-
+let isLoggedIn = false
 class Login extends Component {
     constructor(props) {
         super(props)
@@ -40,13 +39,16 @@ class Login extends Component {
 
         Axios.post('/auth/login', user)
         .then(res => {
-            console.log(res.data.message)
+            if (res.data.result) {
+            isLoggedIn = res.data.result
+            this.setState({isLoggedIn: true})
             }
-        )
+        })
     }
+
     render() {
-        console.log(`Render: ${this.state.isLoggedIn}`)
-        if(this.state.isLoggedIn){
+        console.log(isLoggedIn)
+        if(isLoggedIn){
             return <Redirect to='/scribbls' />
         }
 

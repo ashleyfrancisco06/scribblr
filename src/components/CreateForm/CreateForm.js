@@ -37,7 +37,7 @@ class CreateForm extends Component {
         }
         console.log(newWork)
 
-        axios.post('/create-scribbl', newWork)
+        axios.post('/user/create-scribbl', newWork)  //changed route in server.js in order to enable authorization functionality
             .then(res => console.log(res.data));
 
         this.setState({
