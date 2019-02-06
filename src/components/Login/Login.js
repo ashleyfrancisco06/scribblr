@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Route, Redirect } from "react-router-dom"
+import { Route, Switch, Redirect } from "react-router-dom"
 import "./login.css"
 import App from '../App/App';
+import Container from "../Container/Container"
 
 // https://www.youtube.com/watch?v=OWYxMCfcTbY this video helped with login and sign up forms for front end( React)
 
@@ -13,7 +14,8 @@ class Login extends Component {
         this.state = {
             username: '',
             password:'',
-            clicked:false
+            clicked:false,
+            isLoggedIn: false
         };
         this.submitLogin = this.submitLogin.bind(this)
     }
@@ -26,19 +28,21 @@ class Login extends Component {
             [target]: prevState.value + value
         }))
     }
+    
 
     submitLogin=(e)=> {
         console.log('clicked')
        
     this.setState({
-        clicked:true
+        clicked:true,
+        isLoggedIn: true
     })
     }
     render() {
 
-        if(this.state.clicked){
-        return  <Redirect to={"/scribbls/"} />
-        }
+         if(this.state.isLoggedIn){
+       return <Redirect to='/scribbls' />
+      }
 
         return (
             <div className='inner-container'>
@@ -58,7 +62,6 @@ class Login extends Component {
                             className='login-input'
                             placeholder='Username'
                             onChange={this.onChangeHandler}
-                          
                             required />
                     </div>
                     {/* Password field */}
@@ -76,9 +79,8 @@ class Login extends Component {
 
                     <button type="submit"
                         className="login-button"
-                        // whenever user clicks, event will pop upand put the callback inside 
-                        onClick={this.submitLogin}
-                        >
+                        // whenever user clicks, event will pop up and put the callback inside 
+                        onClick={this.submitLogin}>
                         Login</button>
 
                 </div>
