@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { Route, Redirect } from "react-router-dom"
 import "./login.css"
+import App from '../App/App';
 
 // https://www.youtube.com/watch?v=OWYxMCfcTbY this video helped with login and sign up forms for front end( React)
 
@@ -8,15 +10,41 @@ class Login extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {};
+        this.state = {
+            username: '',
+            password:'',
+            clicked:false
+        };
+        this.submitLogin = this.submitLogin.bind(this)
+    }
+    onChangeHandler = (e)=>{
+        console.log(e.target.name)
+        console.log(e.target.value)
+        const target = e.target.name
+        const value = e.target.value
+        this.setState(prevState => ({
+            [target]: prevState.value + value
+        }))
     }
 
-    submitLogin(e) {
-        
-     }
+    submitLogin=(e)=> {
+        console.log('clicked')
+       
+    this.setState({
+        clicked:true
+    })
+    }
     render() {
+
+        if(this.state.clicked){
+        return  <Redirect to={"/scribbls/"} />
+        }
+
         return (
             <div className='inner-container'>
+                <Route path='/home'
+                       component={App}
+                />
                 <div className='header'>
                     Login
                 </div>
@@ -26,9 +54,12 @@ class Login extends Component {
                     <div className='input-group'>
                         <label htmlFor='username'>Username: </label>
                         <input type='text'
-                            name='username'
+                            name='username' 
                             className='login-input'
-                            placeholder='Username' />
+                            placeholder='Username'
+                            onChange={this.onChangeHandler}
+                          
+                            required />
                     </div>
                     {/* Password field */}
                     <div className='input-group'>
@@ -36,14 +67,18 @@ class Login extends Component {
                         <input type='password'
                             name='password'
                             className='login-input'
-                            placeholder='Password' />
+                            placeholder='Password'
+                            onChange={this.onChangeHandler}
+                            required />
                     </div>
 
                     {/* Login Button */}
-                    <button type="button"
+
+                    <button type="submit"
                         className="login-button"
                         // whenever user clicks, event will pop upand put the callback inside 
-                        onClick={this.submitLogin.bind(this)}>
+                        onClick={this.submitLogin}
+                        >
                         Login</button>
 
                 </div>

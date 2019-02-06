@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { Route } from "react-router-dom"
 import Login from "../Login/Login";
 import SignUp from '../SignUp/SignUp';
+import '../Login/login.css'
+import '../App/App.css'
 
 class RenderLogin extends Component {
   constructor(props) {
@@ -22,7 +25,7 @@ class RenderLogin extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="box-all">
         <div className="box-controller">
 
           <div className='controller'

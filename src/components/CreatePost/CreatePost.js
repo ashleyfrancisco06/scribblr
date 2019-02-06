@@ -2,9 +2,6 @@ import React, {Component} from 'react'
 import CreateForm from '../CreateForm/CreateForm'
 
 class CreatePost extends Component {
-    constructor() {
-        super()
-    }
     render() {
         return (
             <div className='createPost'>
@@ -16,4 +13,4 @@ class CreatePost extends Component {
     
 }
 
-export default CreatePost
+export default CreatePost;

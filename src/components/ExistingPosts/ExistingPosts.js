@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import genres from "../../scripts/genres.json"
 import axios from 'axios'
 
+
 const genreOptions = genres.map((genre) => (
     {value: genre.value, label: genre.label}
     ))
@@ -29,6 +30,7 @@ const ExistingPosts = (props) => {
     }
 
         return (
+           
             <div>
                 <Select
                     value={props.selectedOption}
