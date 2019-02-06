@@ -2,6 +2,7 @@ import React from 'react'
 import Select from "react-select"
 import genres from "../../scripts/genres.json"
 
+
 const genreOptions = genres.map((genre) => (
     {value: genre.value, label: genre.label}
     ))
@@ -20,6 +21,7 @@ const ExistingPosts = (props) => {
         return currentScribbls
     }
         return (
+           
             <div>
                 <Select
                     value={props.selectedOption}

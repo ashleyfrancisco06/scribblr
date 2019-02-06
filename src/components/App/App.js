@@ -7,6 +7,7 @@ import ExistingPosts from '../ExistingPosts/ExistingPosts';
 import RenderLogin from '../RenderLogin-SignUp/RenderLogin-SignUp';
 import axios from 'axios';
 
+
 class App extends Component {
   constructor() {
     super()
@@ -51,7 +52,12 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        
         <Switch>
+          <Route
+           exact path='/'
+            component={RenderLogin} 
+          />
 
         <Route
             exact path={'/login'}
@@ -64,10 +70,8 @@ class App extends Component {
                 selectedOption={this.state.selectedOption}
                 handleChange={this.handleChange}
                 searchedScribbls={this.state.searchedScribbls}
-              />)
-            }
+              />)}
           />
- 
           <Route
             path='/create-scribbl'
             component={CreatePost}

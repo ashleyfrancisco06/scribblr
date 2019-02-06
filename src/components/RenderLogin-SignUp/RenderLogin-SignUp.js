@@ -25,7 +25,7 @@ class RenderLogin extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="box-all">
         <div className="box-controller">
 
           <div className='controller'

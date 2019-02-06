@@ -6,9 +6,10 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 // Splash Page
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
     try {
-        res.json('HELLO WORLD')
+        const login = await User.findById(req.params.id)
+        res.json(login)
     } catch (e) {
         res.status(500).json({
             message: e.message
@@ -57,8 +58,8 @@ app.get('/scribbls/byType/:type', async (req, res) => {
                 type
             }
         })
-        res.json( {scribbls} )
-    } catch(e) {
+        res.json({ scribbls })
+    } catch (e) {
         res.status(500).json({
             message: e.message
         })
@@ -79,16 +80,16 @@ app.post('/create-scribbl', async (req, res) => {
 })
 
 // login route 
-app.get('/login', async (req, res) => {
-    try {
-        const login = await User.findById(req.params.id)
-        res.json(login)
-    } catch (e) {
-        res.status(500).json({
-            message: e.message
-        })
-    }
-})
+// app.get('/login', async (req, res) => {
+//     try {
+//         const login = await User.findById(req.params.id)
+//         res.json(login)
+//     } catch (e) {
+//         res.status(500).json({
+//             message: e.message
+//         })
+//     }
+// })
 
 //create new user 
 // I have commented this out because I am building this into the auth/signup route
@@ -116,13 +117,13 @@ app.get('/user-profile/:id', async (req, res) => {
         })
     }
 })
- 
+
 //get all comments
-app.get('/comments', async(req,res)=>{
-    try{
+app.get('/comments', async (req, res) => {
+    try {
         const comments = await Comment.findAll()
-        res.json({comments})
-    }catch(e){
+        res.json({ comments })
+    } catch (e) {
         res.status(500).json({
             message: e.message
         })
@@ -133,7 +134,7 @@ app.get('/comments', async(req,res)=>{
 app.post('/scribbls/:id/comment', async (req, res) => {
     try {
         console.log(req.body)
-        
+
         const comment = await Comment.create(req.body)
         res.json({ comment })
 
@@ -168,10 +169,10 @@ app.delete('/scribbls/:id/comment', async (req, res) => {
         const commentid = req.params.id
         const comment = await Comment.destroy({
             where: {
-                id : commentid
-            } 
+                id: commentid
+            }
         })
-        res.json({message: `Comment ${comment} was deleted.`})
+        res.json({ message: `Comment ${comment} was deleted.` })
 
     } catch (e) {
         res.status(500).json({
