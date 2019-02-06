@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import ExistingPosts from "../ExistingPosts/ExistingPosts";
 import CreatePost from "../CreatePost/CreatePost";
 import Header from "../Header/Header"
-import Nav from "../Nav/Nav"
+
 
 
 const Container = (props) => {
