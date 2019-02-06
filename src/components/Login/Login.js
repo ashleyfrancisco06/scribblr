@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Route, Redirect } from "react-router-dom"
+import { Route, Switch } from "react-router-dom"
 import "./login.css"
 import App from '../App/App';
+import Container from "../Container/Container"
 
 // https://www.youtube.com/watch?v=OWYxMCfcTbY this video helped with login and sign up forms for front end( React)
 
@@ -13,7 +14,8 @@ class Login extends Component {
         this.state = {
             username: '',
             password:'',
-            clicked:false
+            clicked:false,
+            isLoggedIn: false
         };
         this.submitLogin = this.submitLogin.bind(this)
     }
@@ -26,18 +28,20 @@ class Login extends Component {
             [target]: prevState.value + value
         }))
     }
+    
 
     submitLogin=(e)=> {
         console.log('clicked')
        
     this.setState({
-        clicked:true
+        clicked:true,
+        isLoggedIn: true
     })
     }
     render() {
 
-        if(this.state.clicked){
-        return  <Redirect to={"/scribbls/"} />
+        if(this.state.clicked && this.state.isLoggedIn){
+        return <Switch ><Container /></Switch>
         }
 
         return (

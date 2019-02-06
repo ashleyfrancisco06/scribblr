@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
 import './App.css';
 import Header from '../Header/Header'
-import CreatePost from '../CreatePost/CreatePost'
-import ExistingPosts from '../ExistingPosts/ExistingPosts';
+// import CreatePost from '../CreatePost/CreatePost'
+// import ExistingPosts from '../ExistingPosts/ExistingPosts';
 import RenderLogin from '../RenderLogin-SignUp/RenderLogin-SignUp';
 import axios from 'axios';
 
@@ -14,10 +14,11 @@ class App extends Component {
     this.state = {
       selectedOption: null,
       works: [],
-      searchedScribbls: null
+      searchedScribbls: null,
     }
 
   }
+ 
 
   handleChange = (selectedOption) => {
     const value = selectedOption.value
@@ -52,29 +53,10 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        
         <Switch>
           <Route
            exact path='/'
             component={RenderLogin} 
-          />
-
-        <Route
-            exact path={'/login'}
-            component={RenderLogin} />
-
-          <Route
-            path='/scribbls'
-            render={() =>
-              (<ExistingPosts
-                selectedOption={this.state.selectedOption}
-                handleChange={this.handleChange}
-                searchedScribbls={this.state.searchedScribbls}
-              />)}
-          />
-          <Route
-            path='/create-scribbl'
-            component={CreatePost}
           />
 
         </Switch>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Route } from "react-router-dom"
 import Login from "../Login/Login";
 import SignUp from '../SignUp/SignUp';
 import '../Login/login.css'
@@ -13,6 +12,7 @@ class RenderLogin extends Component {
       isSignUpOpen: false
     }
   }
+  
   showLoginBox() {
     this.setState({
       isLoginOpen: true, isSignUpOpen: false
