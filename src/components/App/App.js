@@ -6,7 +6,6 @@ import CreatePost from '../CreatePost/CreatePost'
 import ExistingPosts from '../ExistingPosts/ExistingPosts';
 import RenderLogin from '../RenderLogin-SignUp/RenderLogin-SignUp';
 import axios from 'axios';
-import RenderLogin from "../RenderLogin-SignUp/RenderLogin-SignUp"
 import SingleScribbl from "../SingleScribbl/SingleScribbl"
 import UpdateForm from "../UpdateForm/UpdateForm"
 
@@ -29,14 +28,14 @@ class App extends Component {
         const scribbl = response.data.scribbl
         
         this.setState({
-          selectScribbl: scribbl
+          selectedScribbl: scribbl
         })
 
-        console.log(this.state.selectScribbl)
+        // console.log(this.state.selectScribbl)
         
     })
   
-    console.log(scribblId)
+    // console.log(scribblId)
 }
 
   handleChange = (selectedOption) => {
@@ -69,6 +68,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(`App: ${this.state.selectedScribbl.title}`)
     return (
       <div className="App">
         <Header />
@@ -84,7 +84,7 @@ class App extends Component {
             component={RenderLogin} />
 
           <Route
-            path='/scribbls'
+            exact path='/scribbls'
             render={() =>
               (<ExistingPosts
                 selectedOption={this.state.selectedOption}
@@ -102,7 +102,7 @@ class App extends Component {
           <Route 
             path = "/scribbls/:id"
             render={(props)=>(
-              <SingleScribbl {...props} scribbl = {this.state.scribbl}/> 
+              <SingleScribbl {...props} scribbl = {this.state.selectedScribbl}/> 
             )}
             />
 
