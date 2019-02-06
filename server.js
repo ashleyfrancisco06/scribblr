@@ -5,8 +5,12 @@ const { User, Work, Comment } = require('./src/models/models');
 const PORT = process.env.PORT || 4567
 const bodyParser = require('body-parser');
 
+const secret = process.env.COOKIE_SECRET || 'super_secret_cookie_secret'
+console.log(secret)
+
 app.use(bodyParser.json());
-app.use(cookieParser(process.env.COOKIE_SECRET))
+app.use(cookieParser(secret))
+
 // Splash Page
 app.get('/', async (req, res) => {
     try {
@@ -288,11 +292,11 @@ app.post('/auth/login', (req, res) => { //going to the /auth route
                     // if passwords match
                     if (result) {
                         //set cookie header
-                        // res.cookie('user_id', user.id, {
-                        //     httpOnly: true, // only accessible to web server
-                        //     signed: true, // best practices
-                        //     // secure: true // makes work on https only, wont work while in development
-                        // })
+                        res.cookie('user_id', user.id, {
+                            httpOnly: true, // only accessible to web server
+                            signed: true, // best practices
+                            // secure: true // makes work on https only, wont work while in development
+                        })
                         res.json({
                             result,
                             message: `logged in ${result} as ${user.user_name}`
