@@ -6,6 +6,7 @@ import axios from 'axios'
 import Nav from "../Nav/Nav"
 
 
+
 const genreOptions = genres.map((genre) => (
     {value: genre.value, label: genre.label}
     ))
@@ -19,7 +20,7 @@ const ExistingPosts = (props) => {
             return (
             
                 <div id={scribbl.id} onClick={props.selectScribbl} key = {key}>
-                <Link to={{pathname: `/scribbls/${scribbl.id}`, state: scribbl}}>
+                <Link id={scribbl.id}  onClick={props.selectScribbl}  to={{pathname: `/scribbls/${scribbl.id}`, state: scribbl}}>
                     <h1>{scribbl.title}</h1>
                     <p>{scribbl.content}</p>
                     </Link>

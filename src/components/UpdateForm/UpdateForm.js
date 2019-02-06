@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './CreateForm.css';
+// import './UpdateForm.css';
 import axios from 'axios';
 import genres from "../../scripts/genres.json"
 
@@ -8,8 +8,7 @@ class UpdateForm extends Component {
         super(props)
         this.state = {
             work: [],
-            updated: false
-
+            updated: false,
 
         }
     }
@@ -84,7 +83,7 @@ class UpdateForm extends Component {
                     className='submitContent'
                     onSubmit={this.handleFormSubmit}
                     onChange={this.handleFromChange}
-                >Submit</button>
+                >Update</button>
             </form>
         )
     }

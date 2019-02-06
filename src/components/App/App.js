@@ -8,6 +8,7 @@ import RenderLogin from '../RenderLogin-SignUp/RenderLogin-SignUp';
 import axios from 'axios';
 import SingleScribbl from "../SingleScribbl/SingleScribbl"
 import Container from "../Container/Container"
+import UpdateForm from "../UpdateForm/UpdateForm"
 
 class App extends Component {
   constructor() {
@@ -30,15 +31,15 @@ class App extends Component {
         const scribbl = response.data.scribbl
 
         this.setState({
-          selectScribbl: scribbl
+          selectedScribbl: scribbl
         })
 
-        console.log(this.state.selectScribbl)
-
-      })
-
-    console.log(scribblId)
-  }
+        // console.log(this.state.selectScribbl)
+        
+    })
+  
+    // console.log(scribblId)
+}
 
   handleChange = (selectedOption) => {
     const value = selectedOption.value
@@ -70,13 +71,7 @@ class App extends Component {
   }
 
   render() {
-
-    //  if(this.state.isLoggedIn){
-    //    return <Redirect to="/scribbls/"/>
-    //  }
-
-
-
+    console.log(`App: ${this.state.selectedScribbl.title}`)
     return (
       <div className="App">
      
@@ -109,8 +104,8 @@ class App extends Component {
             exact path={'/login'}
             component={RenderLogin} /> */}
 
-          {/* <Route
-            path='/scribbls'
+          <Route
+            exact path='/scribbls'
             render={() =>
               (<ExistingPosts
                 selectedOption={this.state.selectedOption}
@@ -125,10 +120,10 @@ class App extends Component {
             component={CreatePost}
           />
 
-          <Route
-            path="/scribbls/:id"
-            render={(props) => (
-              <SingleScribbl {...props} scribbl={this.state.scribblw} />
+          <Route 
+            path = "/scribbls/:id"
+            render={(props)=>(
+              <SingleScribbl {...props} scribbl = {this.state.selectedScribbl}/> 
             )}
           /> */}
 
