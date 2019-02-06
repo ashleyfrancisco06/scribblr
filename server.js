@@ -1,10 +1,12 @@
 const express = require('express');
 const app = express()
+const cookieParser = require('cookie-parser')
 const { User, Work, Comment } = require('./src/models/models');
 const PORT = process.env.PORT || 4567
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
+app.use(cookieParser(process.env.COOKIE_SECRET))
 // Splash Page
 app.get('/', async (req, res) => {
     try {
@@ -215,12 +217,10 @@ app.get('/auth', (req, res) => {
 
 const validateUser = async (user) => {
     const validEmail = user.email //should be string, and not blank
-    // const validPassword = user.password //same as above + any other parameters
+    const validPassword = user.password //same as above + any other parameters
 
-    return validEmail;
-    // return validEmail && validPassword;
-
-
+    // return validEmail;
+    return validEmail && validPassword;
 }
 
 // 'user' below is a reference to the table name, need to adapt for sequelize
@@ -289,25 +289,24 @@ app.post('/auth/login', (req, res) => { //going to the /auth route
                 //compare pwds
                 bcrypt.compare(req.body.password, user.password).then(result => { //user.password is the hashed password from the db
                     // if passwords match
-                    res.json({
-                        message: `User ${user.user_name} and ${result}`
-                    })
-            //         if (result) {
-            //             //set cookie header
-            //             res.cookie('user_id', user.id, {
-            //                 httpOnly: true, // only accessible to web server
-            //                 signed: true, // best practices
-            //                 secure: true // makes work on https only, wont work while in development
-            //             })
-            //             res.json({
-            //                 result,
-            //                 message: 'logged in'
-            //             })
-            //         } else {
-            //             //invalid login error
-            //         }
+                    if (result) {
+                        //set cookie header
+                        res.cookie('user_id', user.id, {
+                            httpOnly: true, // only accessible to web server
+                            signed: true, // best practices
+                            secure: true // makes work on https only, wont work while in development
+                        })
+                        res.json({
+                            result,
+                            message: `logged in ${result} as ${user.user_name}`
+                        })
+                    } else {
+                        res.json({
+                            message: 'Invalid Password, Please Try Again'
+                        })
+                    }
                 })
-            }else{
+            } else {
                 res.json({
                     message: "Invalid User"
                 })
