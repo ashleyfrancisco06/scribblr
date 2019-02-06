@@ -17,7 +17,8 @@ class App extends Component {
       selectedOption: null,
       works: [],
       searchedScribbls: null,
-      selectScribbl: '',
+      selectedScribbl: "",
+      viewUpdateForm: false,
       isLoggedIn: false
     }
 
@@ -123,7 +124,9 @@ class App extends Component {
           <Route 
             path = "/scribbls/:id"
             render={(props)=>(
-              <SingleScribbl {...props} scribbl = {this.state.selectedScribbl}/> 
+              <SingleScribbl {...props} 
+                scribbl = {this.state.selectedScribbl} 
+                viewUpdateForm={this.state.viewUpdateForm}/> 
             )}
           /> */}
 
