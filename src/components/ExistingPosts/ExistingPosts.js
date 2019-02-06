@@ -2,6 +2,8 @@ import React from 'react'
 import Select from "react-select"
 import {Link} from 'react-router-dom'
 import genres from "../../scripts/genres.json"
+import axios from 'axios'
+import Nav from "../Nav/Nav"
 
 
 
@@ -32,6 +34,7 @@ const ExistingPosts = (props) => {
         return (
            
             <div>
+             
                 <Select
                     value={props.selectedOption}
                     onChange={props.handleChange}
