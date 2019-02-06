@@ -12,7 +12,7 @@ class RenderLogin extends Component {
       isSignUpOpen: false
     }
   }
-  
+
   showLoginBox() {
     this.setState({
       isLoginOpen: true, isSignUpOpen: false
@@ -26,6 +26,8 @@ class RenderLogin extends Component {
   render() {
     return (
       <div className="box-all">
+        <h1>Scribblr</h1>
+        <h3>A Hub for Literary Expression</h3>
         <div className="box-controller">
 
           <div className='controller'

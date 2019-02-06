@@ -1,31 +1,34 @@
 import React from "react"
 import { Switch, Route } from 'react-router-dom'
-import Header from "../Header/Header";
 import ExistingPosts from "../ExistingPosts/ExistingPosts";
 import CreatePost from "../CreatePost/CreatePost";
+import Header from "../Header/Header"
 import Nav from "../Nav/Nav"
 
-const Container = () => {
+
+const Container = (props) => {
     return (
         <div>
-            <Switch>
             <Header />
-            <Nav />
+         
+            <Switch>
+
                 <Route
                     path='/scribbls'
-                    render={() =>
+                    render={(props) =>
                         (<ExistingPosts
-                            selectedOption={this.state.selectedOption}
-                            handleChange={this.handleChange}
-                            searchedScribbls={this.state.searchedScribbls}
+                            selectedOption={props.selectedOption}
+                            handleChange={props.handleChange}
+                            searchedScribbls={props.searchedScribbls}
                         />)}
                 />
                 <Route
                     path='/create-scribbl'
                     component={CreatePost}
                 />
-            </Switch>Î
+            </Switch>
         </div>
+
     )
 }
 

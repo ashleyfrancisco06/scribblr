@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Link } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import './App.css';
 import Header from '../Header/Header'
 import CreatePost from '../CreatePost/CreatePost'
@@ -7,6 +7,7 @@ import ExistingPosts from '../ExistingPosts/ExistingPosts';
 import RenderLogin from '../RenderLogin-SignUp/RenderLogin-SignUp';
 import axios from 'axios';
 import SingleScribbl from "../SingleScribbl/SingleScribbl"
+import Container from "../Container/Container"
 
 class App extends Component {
   constructor() {
@@ -15,28 +16,29 @@ class App extends Component {
       selectedOption: null,
       works: [],
       searchedScribbls: null,
-      selectScribbl= '',
+      selectScribbl: '',
+      isLoggedIn: false
     }
 
   }
- 
 
-   selectScribbl = (e) => {
+
+  selectScribbl = (e) => {
     let scribblId = e.currentTarget.id
     axios.get(`/scribbls/${scribblId}`)
-    .then(response => {
+      .then(response => {
         const scribbl = response.data.scribbl
-        
+
         this.setState({
           selectScribbl: scribbl
         })
 
         console.log(this.state.selectScribbl)
-        
-    })
-  
+
+      })
+
     console.log(scribblId)
-}
+  }
 
   handleChange = (selectedOption) => {
     const value = selectedOption.value
@@ -68,27 +70,53 @@ class App extends Component {
   }
 
   render() {
+
+    //  if(this.state.isLoggedIn){
+    //    return <Redirect to="/scribbls/"/>
+    //  }
+
+
+
     return (
       <div className="App">
-        <Header />
+     
         <Switch>
           <Route
-           exact path='/'
-            component={RenderLogin} 
+            exact path='/'
+            render={
+              () => (
+                this.state.isLoggedIn ? (
+                  <Redirect to="/scribbls/" />
+                ) : (
+                    <RenderLogin />
+                  )
+              )
+            }
           />
-
-        <Route
-            exact path={'/login'}
-            component={RenderLogin} />
-
           <Route
+             path='*'
+            render={
+              () => (
+                this.state.isLoggedIn ? (
+                  <Container />
+                ) : (
+                    <Redirect to="/" />
+                  )
+              )
+            }
+          />
+          {/* <Route
+            exact path={'/login'}
+            component={RenderLogin} /> */}
+
+          {/* <Route
             path='/scribbls'
             render={() =>
               (<ExistingPosts
                 selectedOption={this.state.selectedOption}
                 handleChange={this.handleChange}
                 searchedScribbls={this.state.searchedScribbls}
-                selectScribbl= {this.selectScribbl}
+                selectScribbl={this.selectScribbl}
               />)
             }
           />
@@ -97,12 +125,12 @@ class App extends Component {
             component={CreatePost}
           />
 
-          <Route 
-            path = "/scribbls/:id"
-            render={(props)=>(
-              <SingleScribbl {...props} scribbl = {this.state.scribblw}/> 
+          <Route
+            path="/scribbls/:id"
+            render={(props) => (
+              <SingleScribbl {...props} scribbl={this.state.scribblw} />
             )}
-            />
+          /> */}
 
         </Switch>
       </div>

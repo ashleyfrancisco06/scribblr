@@ -1,5 +1,6 @@
 import React from 'react'
 import './header.css';
+import Nav from "../Nav/Nav"
 
 
 const Header = () => {
@@ -7,7 +8,7 @@ const Header = () => {
         <header className='header'>
 
             <h1>Scribblr</h1>
-            
+            <Nav />
             <h3>A Hub for Literary Expression</h3>
 
         </header>

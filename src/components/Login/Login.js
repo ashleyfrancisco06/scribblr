@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch } from "react-router-dom"
+import { Route, Switch, Redirect } from "react-router-dom"
 import "./login.css"
 import App from '../App/App';
 import Container from "../Container/Container"
@@ -40,9 +40,9 @@ class Login extends Component {
     }
     render() {
 
-        if(this.state.clicked && this.state.isLoggedIn){
-        return <Switch ><Container /></Switch>
-        }
+         if(this.state.isLoggedIn){
+       return <Redirect to='/scribbls' />
+      }
 
         return (
             <div className='inner-container'>
@@ -62,7 +62,6 @@ class Login extends Component {
                             className='login-input'
                             placeholder='Username'
                             onChange={this.onChangeHandler}
-                          
                             required />
                     </div>
                     {/* Password field */}
@@ -80,9 +79,8 @@ class Login extends Component {
 
                     <button type="submit"
                         className="login-button"
-                        // whenever user clicks, event will pop upand put the callback inside 
-                        onClick={this.submitLogin}
-                        >
+                        // whenever user clicks, event will pop up and put the callback inside 
+                        onClick={this.submitLogin}>
                         Login</button>
 
                 </div>

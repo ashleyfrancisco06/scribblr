@@ -8,7 +8,10 @@ class SignUp extends Component {
     }
 
     submitSignUp(e) {
-        
+        console.log("clicked")
+        console.log(e.target.name)
+        console.log(e.target.value)
+    
      }
     render() {
         return (
