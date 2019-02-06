@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { Switch, Route, Link } from 'react-router-dom'
 import './App.css';
 import Header from '../Header/Header'
-// import CreatePost from '../CreatePost/CreatePost'
-// import ExistingPosts from '../ExistingPosts/ExistingPosts';
+import CreatePost from '../CreatePost/CreatePost'
+import ExistingPosts from '../ExistingPosts/ExistingPosts';
 import RenderLogin from '../RenderLogin-SignUp/RenderLogin-SignUp';
 import axios from 'axios';
-import RenderLogin from "../RenderLogin-SignUp/RenderLogin-SignUp"
 import SingleScribbl from "../SingleScribbl/SingleScribbl"
 
 class App extends Component {
@@ -16,6 +15,7 @@ class App extends Component {
       selectedOption: null,
       works: [],
       searchedScribbls: null,
+      selectScribbl= '',
     }
 
   }
