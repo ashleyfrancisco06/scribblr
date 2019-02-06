@@ -6,7 +6,6 @@ import CreatePost from '../CreatePost/CreatePost'
 import ExistingPosts from '../ExistingPosts/ExistingPosts';
 import RenderLogin from '../RenderLogin-SignUp/RenderLogin-SignUp';
 import axios from 'axios';
-import RenderLogin from "../RenderLogin-SignUp/RenderLogin-SignUp"
 import SingleScribbl from "../SingleScribbl/SingleScribbl"
 
 class App extends Component {
