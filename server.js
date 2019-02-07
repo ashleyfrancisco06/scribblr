@@ -99,6 +99,24 @@ app.put('/scribbls/:id', async (req, res) =>{
     
     });
 
+// delete scribbl
+
+app.delete('/user/scribbl/:id', async (req, res) => {
+    try {
+        const scribblid = req.params.id
+        const scribbl = await Work.destroy({
+            where: {
+                id: scribblid
+            }
+        })
+        res.json({ message: `Scribbl ${scribbl} was deleted.` })
+    } catch (e) {
+        res.status(500).json({
+            message: e.message
+        })
+    }
+})
+
 
       
 
