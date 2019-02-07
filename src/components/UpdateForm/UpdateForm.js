@@ -49,7 +49,6 @@ class UpdateForm extends Component {
             work: updatedWork,
             updated: true
         })
-        window.location.reload()
 
     }
 
