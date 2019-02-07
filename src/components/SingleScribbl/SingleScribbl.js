@@ -20,7 +20,7 @@ const SingleScribbl = (props) => {
                     <Route 
                             path = "/scribbls/:id"
                             render={(props)=>(
-                            <UpdatePost/> 
+                            <UpdatePost scribbl = {props.location.state}/> 
                             )}
                         />
                 

@@ -19,7 +19,7 @@ class App extends Component {
       works: [],
       searchedScribbls: null,
       selectedScribbl: "",
-      viewUpdateForm: false,
+      viewUpdateForm: true,
       isLoggedIn: false
     }
 
@@ -84,14 +84,19 @@ class App extends Component {
             render={
               () => (
                 this.state.isLoggedIn ? (
+
+                  <Redirect to="/scribbls/" />
+
                   // <Redirect to="/scribbls/" />
-                  <Container />
+//                   <Container />
+
                 ) : (
                     <RenderLogin />
                   )
               )
             }
           />
+      
           <Route
             exact path='/scribbls'
             render={() =>
