@@ -36,14 +36,14 @@ class UpdateForm extends Component {
         console.log('Scribbl Updated')
         event.preventDefault()
 
-        let work = this.state.work
+        // let work = this.state.work
 
         let updatedWork = {
             title: this.state.work.title,
             content: this.state.work.content,
             type: this.state.work.type
         }
-        axios.put(`/scribbls/${this.state.work.id}`, updatedWork)
+        axios.put(`/user/scribbls/${this.state.work.id}`, updatedWork)
             .then(res => console.log(res)).catch(e=>console.log(e))
         this.setState({
             work: updatedWork,
@@ -62,7 +62,6 @@ class UpdateForm extends Component {
     }
     
     render() {
-        // console.log(this.state.work.title)
         return (
             
             <form id='post-form'

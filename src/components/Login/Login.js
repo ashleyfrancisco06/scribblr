@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
-import { Route, Switch, Redirect } from "react-router-dom"
+import { Route, Redirect } from "react-router-dom"
 import "./login.css"
 import App from '../App/App';
-import Container from "../Container/Container"
+import Axios from "axios"
 
 // https://www.youtube.com/watch?v=OWYxMCfcTbY this video helped with login and sign up forms for front end( React)
 
-
+let isLoggedIn = false // workaround to get login to redirect, not sure if secure.
 class Login extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            username: '',
+            user_name: '',
             password:'',
             clicked:false,
             isLoggedIn: false
@@ -20,29 +20,37 @@ class Login extends Component {
         this.submitLogin = this.submitLogin.bind(this)
     }
     onChangeHandler = (e)=>{
-        console.log(e.target.name)
-        console.log(e.target.value)
-        const target = e.target.name
-        const value = e.target.value
-        this.setState(prevState => ({
-            [target]: prevState.value + value
-        }))
+        const element = e.target
+        const { name, value } = element
+
+        const newState = {}
+        newState[name] = value
+
+        this.setState(newState)
     }
-    
 
     submitLogin=(e)=> {
-        console.log('clicked')
-       
-    this.setState({
-        clicked:true,
-        isLoggedIn: true
-    })
-    }
-    render() {
+        e.preventDefault()
 
-         if(this.state.isLoggedIn){
-       return <Redirect to='/scribbls' />
-      }
+        const user = {
+            user_name: this.state.user_name,
+            password: this.state.password
+        }
+
+        Axios.post('/auth/login', user)
+        .then(res => {
+            if (res.data.result) {
+            isLoggedIn = res.data.result
+            this.setState({isLoggedIn: true})
+            }
+        })
+    }
+
+    render() {
+        // console.log(isLoggedIn)
+        if(isLoggedIn){
+            return <Redirect to='/scribbls' />
+        }
 
         return (
             <div className='inner-container'>
@@ -56,9 +64,9 @@ class Login extends Component {
                 <div className='box'>
                     {/* Username field */}
                     <div className='input-group'>
-                        <label htmlFor='username'>Username: </label>
+                        <label htmlFor='user_name'>Username: </label>
                         <input type='text'
-                            name='username' 
+                            name='user_name' 
                             className='login-input'
                             placeholder='Username'
                             onChange={this.onChangeHandler}

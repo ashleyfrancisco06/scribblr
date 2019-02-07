@@ -22,8 +22,6 @@ class CreateForm extends Component {
         newState[name] = value
 
         this.setState(newState)
-
-        console.log(newState)
     }
 
     handleSubmit = (event) => {
@@ -35,10 +33,10 @@ class CreateForm extends Component {
             title: this.state.title,
             content: this.state.content
         }
-        console.log(newWork)
+        console.log(`new work: ${newWork}`)
 
-        axios.post('/create-scribbl', newWork)
-            .then(res => console.log(res.data));
+        axios.post('/user/create-scribbl', newWork)  //changed route in server.js in order to enable authorization functionality
+            .then(res => console.log(`post ${res.data}`));
 
         this.setState({
             newWork: newWork,
