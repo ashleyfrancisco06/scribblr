@@ -5,9 +5,19 @@ const { User, Work, Comment } = require('./src/models/models');
 const PORT = process.env.PORT || 4567
 const bodyParser = require('body-parser');
 const authMiddleware = require('./src/auth/authMiddleware')
+const logger = require('morgan')
+// const userRoutes = require('./routes/user')
+
+// console.log(userRoutes)
+// const { createWork,
+//         createComment,
+//         updateWork,
+//         deleteUser,
+//         deleteComment } = userRoutes
 
 const secret = process.env.COOKIE_SECRET || 'super_secret_cookie_secret'
 
+app.use(logger('dev'))
 app.use(bodyParser.json());
 app.use(cookieParser(secret));
 app.use('/user', authMiddleware.isLoggedIn)
@@ -57,6 +67,7 @@ app.get('/scribbls/:id', async (req, res) => {
     }
 })
 
+// get all scribbls by type
 app.get('/scribbls/byType/:type', async (req, res) => {
     try {
         const type = req.params.type
@@ -75,6 +86,7 @@ app.get('/scribbls/byType/:type', async (req, res) => {
 
 //create new scribbl 
 app.post('/user/create-scribbl', async (req, res) => {
+    console.log(req.body)
     try {
         const scribbl = await Work.create(req.body)
         res.json({ scribbl })
@@ -103,7 +115,7 @@ app.put('/user/scribbl/:id', async (req, res) =>{
         res.status(500).json({message: e.message})
       }
     
-    });
+});
 
 // user profile
 app.get('/user-profile/:id', async (req, res) => {

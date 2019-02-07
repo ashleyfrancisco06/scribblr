@@ -1,11 +1,11 @@
 // authorization functions
-const isLoggedIn = (req, res) => {
-    console.log(req.signedCookies)
+const isLoggedIn = (req, res, next) => {
+    console.log(req.signedCookies.user_id)
     if(req.signedCookies.user_id){
-        return true
+        next()
     } else {
         res.status(401).json({
-            message: 'Unauthorized'
+            message: 'Unauthorized, Please Login'
         })
     }
 }

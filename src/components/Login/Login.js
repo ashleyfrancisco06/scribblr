@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { Route, Switch, Redirect } from "react-router-dom"
+import { Route, Redirect } from "react-router-dom"
 import "./login.css"
 import App from '../App/App';
 import Axios from "axios"
 
 // https://www.youtube.com/watch?v=OWYxMCfcTbY this video helped with login and sign up forms for front end( React)
 
-let isLoggedIn = false
+let isLoggedIn = false // workaround to get login to redirect, not sure if secure.
 class Login extends Component {
     constructor(props) {
         super(props)
@@ -47,7 +47,7 @@ class Login extends Component {
     }
 
     render() {
-        console.log(isLoggedIn)
+        // console.log(isLoggedIn)
         if(isLoggedIn){
             return <Redirect to='/scribbls' />
         }
