@@ -13,14 +13,13 @@ const Header = () => {
             <Navbar bg="light" variant="light">
                 <h3>A Hub for Literary Expression</h3>
                 <Nav className="mr-auto">
-                    <Nav.Link href="/scribbls">Home</Nav.Link>
+                    <Link to="/scribbls" className="nav-link">Home</Link>
                     <NavDropdown title="Hello Scribblr!" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.3">Profile</NavDropdown.Item>
-                        <NavDropdown.Item href="/create-scribbl">Create Scribbl</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">My Scribbls</NavDropdown.Item>
-
+                        <Link to="#action/3.3"  className="dropdown-item">Profile</Link>
+                        <Link to="/create-scribbl" className="dropdown-item">Create Scribbl</Link>
+                        <Link to="#action/3.2" className="dropdown-item">My Scribbls</Link>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">Log Out</NavDropdown.Item>
+                        <Link to="#action/3.4" className="dropdown-item">Log Out</Link>
                     </NavDropdown>
                 </Nav>
             </Navbar>

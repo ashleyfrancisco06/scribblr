@@ -18,13 +18,15 @@ const ExistingPosts = (props) => {
     const getCurrentScribbls = () => {
         const currentScribbls = props.searchedScribbls.map((scribbl, key) => {
             return (
-                <Card style={{ width: '18rem' }} id={scribbl.id} onClick={props.selectScribbl} key={key} className="scribbl-post">
-                    <Card.Body>
+                <div className="grid">
+                    <Card style={{ width: '18rem' }} id={scribbl.id} onClick={props.selectScribbl} key={key} className="scribbl-post">
+                        <Card.Body>
                             <Card.Title>{scribbl.title}</Card.Title>
                             <Card.Text>{scribbl.content}</Card.Text>
                             <Link className="existing-post" id={scribbl.id} onClick={props.selectScribbl} to={{ pathname: `/scribbls/${scribbl.id}`, state: scribbl }}>Read More</Link>
-                    </Card.Body>
-                </Card>
+                        </Card.Body>
+                    </Card>
+                </div>
             )
         })
         return currentScribbls

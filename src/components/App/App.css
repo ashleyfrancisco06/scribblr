@@ -132,15 +132,6 @@ background:lightskyblue;
   margin: 0 auto;
   
 }
-/* .existing-post,h2,h5 {
-  margin:0 auto;
-  width:400px;
-  text-decoration: none;
-  color:black;
-  padding:10pt;
-  font-size: 15pt;
-  background: rgba(255,255,255,.7)
-} */
 
 .card-title{
   font-size:20px;
@@ -148,6 +139,19 @@ background:lightskyblue;
 }
 .card{
   margin: 20px auto;
+ 
+
+}
+.scribbl-post:hover{
+  transform: scale(1.1);
+  transition: .4s;
+ 
+}
+.grid{
+ display: flex;
+ flex-direction: row;
+ flex-wrap: wrap;
+ 
 }
 
 
