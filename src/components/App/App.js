@@ -6,8 +6,9 @@ import CreatePost from '../CreatePost/CreatePost'
 import ExistingPosts from '../ExistingPosts/ExistingPosts';
 import RenderLogin from '../RenderLogin-SignUp/RenderLogin-SignUp';
 import axios from 'axios';
-import SingleScribbl from "../SingleScribbl/SingleScribbl"
-// import UpdateForm from "../UpdateForm/UpdateForm"
+import SingleScribbl from "../SingleScribbl/SingleScribbl";
+import Container from "../Container/Container"
+
 
 
 class App extends Component {
@@ -36,11 +37,11 @@ class App extends Component {
         })
 
         // console.log(this.state.selectScribbl)
-        
-    })
-  
+
+      })
+
     // console.log(scribblId)
-}
+  }
 
   handleChange = (selectedOption) => {
     const value = selectedOption.value
@@ -75,22 +76,27 @@ class App extends Component {
     console.log(`App: ${this.state.selectedScribbl.title}`)
     return (
       <div className="App">
-     
+        <Header />
         <Switch>
-          <Route
+        
+          <Route 
             exact path='/'
             render={
               () => (
                 this.state.isLoggedIn ? (
+
                   <Redirect to="/scribbls/" />
+
+                  // <Redirect to="/scribbls/" />
+//                   <Container />
+
                 ) : (
                     <RenderLogin />
                   )
               )
             }
           />
-         
-
+      
           <Route
             exact path='/scribbls'
             render={() =>
@@ -107,12 +113,12 @@ class App extends Component {
             component={CreatePost}
           />
 
-          <Route 
-            path = "/scribbls/:id"
-            render={(props)=>(
-              <SingleScribbl {...props} 
-                scribbl = {this.state.selectedScribbl} 
-                viewUpdateForm={this.state.viewUpdateForm}/> 
+          <Route
+            path="/scribbls/:id"
+            render={(props) => (
+              <SingleScribbl {...props}
+                scribbl={this.state.selectedScribbl}
+                viewUpdateForm={this.state.viewUpdateForm} />
             )}
           /> 
 
