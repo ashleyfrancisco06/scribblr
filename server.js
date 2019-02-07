@@ -81,7 +81,7 @@ app.post('/create-scribbl', async (req, res) => {
 
 //update scribbl
 
-app.put('/scribbl:id', async (req, res) =>{
+app.put('/scribbls/:id', async (req, res) =>{
     try {
         const id = req.params.id
         const updatedScribl = {
@@ -90,6 +90,7 @@ app.put('/scribbl:id', async (req, res) =>{
           type: req.body.type
         };
         const scribbl = await Work.update(updatedScribl, { where: {id: id} })
+        console.log(scribbl)
         res.json(scribbl)
       } catch(e) {
         console.error(e)

@@ -18,7 +18,7 @@ class App extends Component {
       works: [],
       searchedScribbls: null,
       selectedScribbl: "",
-      viewUpdateForm: false,
+      viewUpdateForm: true,
       isLoggedIn: false
     }
 
@@ -89,21 +89,7 @@ class App extends Component {
               )
             }
           />
-          <Route
-             path='*'
-            render={
-              () => (
-                this.state.isLoggedIn ? (
-                  <Container />
-                ) : (
-                    <Redirect to="/" />
-                  )
-              )
-            }
-          />
-          {/* <Route
-            exact path={'/login'}
-            component={RenderLogin} /> */}
+         
 
           <Route
             exact path='/scribbls'
@@ -128,7 +114,7 @@ class App extends Component {
                 scribbl = {this.state.selectedScribbl} 
                 viewUpdateForm={this.state.viewUpdateForm}/> 
             )}
-          /> */}
+          /> 
 
         </Switch>
       </div>
