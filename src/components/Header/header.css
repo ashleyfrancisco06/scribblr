@@ -8,15 +8,14 @@ h1{
 .nav a{
     float:right;
     text-decoration: none;
-    color:black;
+    color:rgba(218,224,239,.7);
     cursor: pointer;
     padding:5pt;
     font-family:'Ubuntu', sans-serif;
 
 }
 nav a:hover{
-    border: 1px solid black;
-    background: black;
+    background:rgba(218,224,239,.7);
     color:white;
     transition: 0.5s;
 
@@ -26,9 +25,15 @@ h3{
     margin:0;
     font-family:'Ubuntu', sans-serif;
     font-weight:500;
+    font-size: 17pt;
 
 }
 #post-form{
     padding:15pt;
     margin:20pt;
+}
+.mr-auto{
+    margin-right: 0;
+    margin-left:800px;
+
 }
