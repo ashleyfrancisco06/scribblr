@@ -18,15 +18,13 @@ const ExistingPosts = (props) => {
     const getCurrentScribbls = () => {
         const currentScribbls = props.searchedScribbls.map((scribbl, key) => {
             return (
-                <div className="grid">
                     <Card style={{ width: '18rem' }} id={scribbl.id} onClick={props.selectScribbl} key={key} className="scribbl-post">
                         <Card.Body>
                             <Card.Title>{scribbl.title}</Card.Title>
-                            <Card.Text>{scribbl.content}</Card.Text>
+                            <Card.Text>{scribbl.content.substr(0,75)}...</Card.Text>
                             <Link className="existing-post" id={scribbl.id} onClick={props.selectScribbl} to={{ pathname: `/scribbls/${scribbl.id}`, state: scribbl }}>Read More</Link>
                         </Card.Body>
                     </Card>
-                </div>
             )
         })
         return currentScribbls
@@ -44,7 +42,9 @@ const ExistingPosts = (props) => {
                 onChange={props.handleChange}
                 options={genreOptions}
             />
+            <div className='grid'>
             {props.searchedScribbls && getCurrentScribbls()}
+            </div>
         </div>
     )
 }
