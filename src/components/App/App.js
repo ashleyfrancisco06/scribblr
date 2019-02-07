@@ -77,6 +77,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <div className= "para-outer">
         <Switch>
         
           <Route 
@@ -118,6 +119,7 @@ class App extends Component {
           /> 
 
         </Switch>
+        </div>
       </div>
     );
   }

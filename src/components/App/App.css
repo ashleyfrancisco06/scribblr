@@ -1,6 +1,22 @@
 .App {
   text-align: center;
+  
  
+}
+.para-outer{
+  width:100vw;
+  height:100vh;
+  background-image: url(../images/typewriter.jpg);
+  background-size: cover;
+}
+
+#scribbls-h2{
+  margin: 0 auto;
+  padding-top: 40px;
+}
+
+.genre-label{
+  flex:1;
 }
 
 .box{
@@ -107,4 +123,22 @@ background:lightskyblue;
   background-color: #2ecc71;
 }
 
+/* Search Bar */
+.css-10nd86i,
+.css-vj8t7z{
+ 
+  width: 300px;
+  height: 40px;
+  margin: 0 auto;
+  
+}
+.existing-post,h2,h5 {
+  margin:0 auto;
+  width:400px;
+  text-decoration: none;
+  color:black;
+ 
+  font-size: 15pt;
+  background: rgba(255,255,255,.7)
+}
 
