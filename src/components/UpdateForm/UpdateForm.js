@@ -7,42 +7,49 @@ class UpdateForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            work: [],
+            work: this.props.scribbl.scribbl,
             updated: false,
-
         }
     }
 
     handleFormChange = (event) => {
+        // const element = event.target
+        // const { name, value } = element
+
+        // const newState = {}
+        // newState[name] = value
+
+        // this.setState(newState)
+
         const element = event.target
-        const { name, value } = element
+        const {name, value} = element
+      
+        this.setState(prevState => {
+          let newState = prevState.work
+          newState[name] = value
+          return newState
+        })
 
-        const newState = {}
-        newState[name] = value
-
-        this.setState(newState)
-
-        console.log(newState)
     }
 
     handleFormSubmit = (event) => {
         console.log('Scribbl Updated')
         event.preventDefault()
 
-        let updateWork = {
-            type: this.state.type,
-            title: this.state.title,
-            content: this.state.content
+        // let work = this.state.work
+
+        let updatedWork = {
+            title: this.state.work.title,
+            content: this.state.work.content,
+            type: this.state.work.type
         }
-        console.log(updateWork)
-
-        axios.put('/user/scribbls/:id', updateWork) //changed route to match server
-            .then(res => console.log(res.data));
-
+        axios.put(`/scribbls/${this.state.work.id}`, updatedWork)
+            .then(res => console.log(res)).catch(e=>console.log(e))
         this.setState({
-            updateWork: updateWork,
+            work: updatedWork,
             updated: true
         })
+
     }
 
     getOptions = () => {
@@ -55,27 +62,29 @@ class UpdateForm extends Component {
     }
     
     render() {
+        // console.log(this.state.work.title)
         return (
+            
             <form id='post-form'
                 onSubmit={this.handleFormSubmit}
                 onChange={this.handleFormChange}>
                 <label htmlFor="title">Title: </label>
                 <input type='text'
                     name='title'
-                    value={this.state.title} />
+                    defaultValue={this.state.work.title} />
                 <label htmlFor="type">Genre: </label>
                 <select form='post-form'
-                    value={this.state.type}
+                    defaultValue={this.state.work.type}
                     name='type'
                     className='postDropdownSelect'>
-                    <option value={this.state.value}>Select Genre</option>
+                    <option value={this.state.work.value}>Select Genre</option>
                     { this.getOptions() }
                 </select>
                 <br />
 
                 <textarea form='post-form'
                     name='content'
-                    value={this.state.content}
+                    defaultValue={this.state.work.content}
                     placeholder='Work goes here...'
                     className='postContent'></textarea>
                 <br />

@@ -109,12 +109,12 @@ app.put('/user/scribbl/:id', async (req, res) =>{
           type: req.body.type
         };
         const scribbl = await Work.update(updatedScribl, { where: {id: id} })
+        console.log(scribbl)
         res.json(scribbl)
       } catch(e) {
         console.error(e)
         res.status(500).json({message: e.message})
       }
-    
 });
 
 // // user profile

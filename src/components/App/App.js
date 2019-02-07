@@ -6,9 +6,10 @@ import CreatePost from '../CreatePost/CreatePost'
 import ExistingPosts from '../ExistingPosts/ExistingPosts';
 import RenderLogin from '../RenderLogin-SignUp/RenderLogin-SignUp';
 import axios from 'axios';
-import SingleScribbl from "../SingleScribbl/SingleScribbl"
+import SingleScribbl from "../SingleScribbl/SingleScribbl";
 import Container from "../Container/Container"
-import UpdateForm from "../UpdateForm/UpdateForm"
+
+
 
 
 class App extends Component {
@@ -18,7 +19,8 @@ class App extends Component {
       selectedOption: null,
       works: [],
       searchedScribbls: null,
-      selectScribbl: '',
+      selectedScribbl: "",
+      viewUpdateForm: true,
       isLoggedIn: false
     }
 
@@ -37,11 +39,11 @@ class App extends Component {
         })
 
         // console.log(this.state.selectScribbl)
-        
-    })
-  
+
+      })
+
     // console.log(scribblId)
-}
+  }
 
   handleChange = (selectedOption) => {
     const value = selectedOption.value
@@ -75,9 +77,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-     
+        <Header />
+        <div className= "para-outer">
         <Switch>
-          <Route
+        
+          <Route 
             exact path='/'
             render={
               () => (
@@ -89,22 +93,7 @@ class App extends Component {
               )
             }
           />
-          <Route
-             path='*'
-            render={
-              () => (
-                // this.state.isLoggedIn ? (
-                  <Container />
-                // ) : (
-                //     <Redirect to="/" /> // This is
-                //   )
-              )
-            }
-          />
-          {/* <Route
-            exact path={'/login'}
-            component={RenderLogin} /> */}
-
+      
           <Route
             exact path='/scribbls'
             render={() =>
@@ -121,14 +110,17 @@ class App extends Component {
             component={CreatePost}
           />
 
-          <Route 
-            path = "/scribbls/:id"
-            render={(props)=>(
-              <SingleScribbl {...props} scribbl = {this.state.selectedScribbl}/> 
+          <Route
+            path="/scribbls/:id"
+            render={(props) => (
+              <SingleScribbl {...props}
+                scribbl={this.state.selectedScribbl}
+                viewUpdateForm={this.state.viewUpdateForm} />
             )}
-          />
+          /> 
 
         </Switch>
+        </div>
       </div>
     );
   }
