@@ -100,7 +100,7 @@ app.post('/user/create-scribbl', async (req, res) => {
 
 //update scribbl
 
-app.put('/user/scribbl/:id', async (req, res) =>{
+app.put('/user/scribbls/:id', async (req, res) =>{
     try {
         const id = req.params.id
         const updatedScribl = {
@@ -116,6 +116,23 @@ app.put('/user/scribbl/:id', async (req, res) =>{
         res.status(500).json({message: e.message})
       }
 });
+
+// delete scribbl
+app.delete('/user/scribbl/:id', async (req, res) => {
+    try {
+        const scribblid = req.params.id
+        const scribbl = await Work.destroy({
+            where: {
+                id: scribblid
+            }
+        })
+        res.json({ message: `Scribbl ${scribbl} was deleted.` })
+    } catch (e) {
+        res.status(500).json({
+            message: e.message
+        })
+    }
+})
 
 // // user profile
 // app.get('/user-profile/:id', async (req, res) => {
@@ -159,21 +176,21 @@ app.post('/user/scribbls/:id/comment', async (req, res) => {
 
 //delete user
 
-app.delete('/user/user-profile/:id', async (req, res) => {
-    try {
-        const userid = req.params.id
-        const user = await User.destroy({
-            where: {
-                id: userid
-            }
-        })
-        res.json({ message: `User ${user} was deleted.` })
-    } catch (e) {
-        res.status(500).json({
-            message: e.message
-        })
-    }
-})
+// app.delete('/user/user-profile/:id', async (req, res) => {
+//     try {
+//         const userid = req.params.id
+//         const user = await User.destroy({
+//             where: {
+//                 id: userid
+//             }
+//         })
+//         res.json({ message: `User ${user} was deleted.` })
+//     } catch (e) {
+//         res.status(500).json({
+//             message: e.message
+//         })
+//     }
+// })
 
 // delete comment
 app.delete('/user/scribbls/:id/comment', async (req, res) => {

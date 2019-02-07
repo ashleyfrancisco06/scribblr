@@ -43,7 +43,7 @@ class UpdateForm extends Component {
             content: this.state.work.content,
             type: this.state.work.type
         }
-        axios.put(`/scribbls/${this.state.work.id}`, updatedWork)
+        axios.put(`/user/scribbls/${this.state.work.id}`, updatedWork)
             .then(res => console.log(res)).catch(e=>console.log(e))
         this.setState({
             work: updatedWork,
