@@ -62,7 +62,6 @@ class UpdateForm extends Component {
     }
     
     render() {
-        // console.log(this.state.work.title)
         return (
             
             <form id='post-form'

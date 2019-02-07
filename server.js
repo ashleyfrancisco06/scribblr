@@ -101,6 +101,7 @@ app.post('/user/create-scribbl', async (req, res) => {
 //update scribbl
 
 app.put('/user/scribbls/:id', async (req, res) =>{
+    console.log(req.params.id)
     try {
         const id = req.params.id
         const updatedScribl = {

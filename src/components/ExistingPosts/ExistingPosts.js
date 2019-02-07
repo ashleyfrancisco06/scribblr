@@ -16,16 +16,17 @@ const ExistingPosts = (props) => {
     console.log(props)
     const getCurrentScribbls = () => {
         const currentScribbls = props.searchedScribbls.map((scribbl, key) => {
-            return (
-            
-                <div id={scribbl.id} onClick={props.selectScribbl} key = {key}>
-                <Link className="existing-post" id={scribbl.id}  onClick={props.selectScribbl}  to={{pathname: `/scribbls/${scribbl.id}`, state: scribbl}}>
-                    <h2>{scribbl.title}</h2>
-                    <h5>{scribbl.content}</h5>
-                    </Link>
-                </div>
-               
-            )
+            if (scribbl) {
+                return (
+                    <div id={scribbl.id} onClick={props.selectScribbl} key = {key}>
+                    <Link className="existing-post" id={scribbl.id}  onClick={props.selectScribbl}  to={{pathname: `/scribbls/${scribbl.id}`, state: scribbl}}>
+                        <h2>{scribbl.title}</h2>
+                        <h5>{scribbl.content}</h5>
+                        </Link>
+                    </div>
+                
+                )
+            }
         })
         return currentScribbls
     }

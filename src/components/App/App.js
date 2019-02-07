@@ -26,6 +26,18 @@ class App extends Component {
 
   }
 
+  removeDeletedScribbl = (scribblToDelete) => {
+    const updatedSelectedScribbl = this.state.searchedScribbls.map((scribbl => {
+      console.log(scribbl.id)
+      console.log(scribblToDelete)
+      if (scribbl.id !== scribblToDelete) {
+        return scribbl
+      }
+    }))
+    this.setState(prevState => ({
+      searchedScribbls: updatedSelectedScribbl
+    }))
+  }
   
 
   selectScribbl = (e) => {
@@ -115,7 +127,8 @@ class App extends Component {
             render={(props) => (
               <SingleScribbl {...props}
                 scribbl={this.state.selectedScribbl}
-                viewUpdateForm={this.state.viewUpdateForm} />
+                viewUpdateForm={this.state.viewUpdateForm}
+                removeDeletedScribbl={this.removeDeletedScribbl} />
             )}
           /> 
 
