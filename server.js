@@ -15,6 +15,9 @@ const logger = require('morgan')
 //         deleteUser,
 //         deleteComment } = userRoutes
 
+const path = require('path');
+app.use("/", express.static("./build/"));
+
 const secret = process.env.COOKIE_SECRET || 'super_secret_cookie_secret'
 
 app.use(logger('dev'))
@@ -322,6 +325,12 @@ app.post('/auth/login', (req, res) => { //going to the /auth route
         })
     }
 })
+
+if (process.env.NODE_ENV == "production") {
+    app.get("/*", function(request, response) {
+      response.sendFile(path.join(__dirname, "build", "index.html"));
+    });
+  }
 
 
 app.listen(PORT, () => console.log(`Example app listening on ${PORT}`))

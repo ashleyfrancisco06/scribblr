@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 
 // create database
 const db = new Sequelize({
-    database: "scribblr_db",
+    database: process.env.DATABASE_URL || scribblr_db,
     dialect: "postgres"
 })
 

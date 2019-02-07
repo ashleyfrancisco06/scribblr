@@ -9,7 +9,7 @@ import axios from 'axios';
 import SingleScribbl from "../SingleScribbl/SingleScribbl";
 import Container from "../Container/Container"
 
-
+console.log(process.env)
 
 
 class App extends Component {
