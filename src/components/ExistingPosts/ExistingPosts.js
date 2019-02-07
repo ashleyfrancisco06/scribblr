@@ -17,15 +17,29 @@ const ExistingPosts = (props) => {
     console.log(props)
     const getCurrentScribbls = () => {
         const currentScribbls = props.searchedScribbls.map((scribbl, key) => {
-            return (
-                <Card style={{ width: '18rem' }} id={scribbl.id} onClick={props.selectScribbl} key={key} className="scribbl-post">
-                    <Card.Body>
-                            <Card.Title>{scribbl.title}</Card.Title>
-                            <Card.Text>{scribbl.content}</Card.Text>
-                            <Link className="existing-post" id={scribbl.id} onClick={props.selectScribbl} to={{ pathname: `/scribbls/${scribbl.id}`, state: scribbl }}>Read More</Link>
-                    </Card.Body>
-                </Card>
-            )
+            
+//                 return (
+//                     <div id={scribbl.id} onClick={props.selectScribbl} key = {key}>
+//                     <Link className="existing-post" id={scribbl.id}  onClick={props.selectScribbl}  to={{pathname: `/scribbls/${scribbl.id}`, state: scribbl}}>
+//                         <h2>{scribbl.title}</h2>
+//                         <h5>{scribbl.content}</h5>
+//                         </Link>
+//                     </div>
+                
+//                 )
+//             }
+
+            if (scribbl) {
+                return (
+                    <Card style={{ width: '18rem' }} id={scribbl.id} onClick={props.selectScribbl} key={key} className="scribbl-post">
+                        <Card.Body>
+                                <Card.Title>{scribbl.title}</Card.Title>
+                                <Card.Text>{scribbl.content}</Card.Text>
+                                <Link className="existing-post" id={scribbl.id} onClick={props.selectScribbl} to={{ pathname: `/scribbls/${scribbl.id}`, state: scribbl }}>Read More</Link>
+                        </Card.Body>
+                    </Card>
+                )
+            }
         })
         return currentScribbls
     }

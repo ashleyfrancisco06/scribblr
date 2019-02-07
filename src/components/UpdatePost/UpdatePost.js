@@ -7,11 +7,13 @@ class UpdatePost extends Component {
         super(props)
     }
     render() {
-        console.log(this.props)
         return (
             <div className='updateForm'>
                 <UpdateForm scribbl = {this.props} />
-                <Delete scribblId={this.props.scribbl.id} />
+                <Delete 
+                    scribblId={this.props.scribbl.id}
+                    removeDeletedScribbl={this.props.removeDeletedScribbl}
+                />
             </div>
         )
     }

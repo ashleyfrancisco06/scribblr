@@ -11,6 +11,7 @@ import Container from "../Container/Container"
 
 
 
+
 class App extends Component {
   constructor() {
     super()
@@ -25,6 +26,19 @@ class App extends Component {
 
   }
 
+  removeDeletedScribbl = (scribblToDelete) => {
+    const updatedSelectedScribbl = this.state.searchedScribbls.map((scribbl => {
+      console.log(scribbl.id)
+      console.log(scribblToDelete)
+      if (scribbl.id !== scribblToDelete) {
+        return scribbl
+      }
+    }))
+    this.setState(prevState => ({
+      searchedScribbls: updatedSelectedScribbl
+    }))
+  }
+  
 
   selectScribbl = (e) => {
     let scribblId = e.currentTarget.id
@@ -73,7 +87,7 @@ class App extends Component {
   }
 
   render() {
-   
+
     return (
       <div className="App">
         <Header />
@@ -84,16 +98,11 @@ class App extends Component {
             exact path='/'
             render={
               () => (
-                this.state.isLoggedIn ? (
-
-                  <Redirect to="/scribbls/" />
-
-                  // <Redirect to="/scribbls/" />
-//                   <Container />
-
-                ) : (
+                // this.state.isLoggedIn ? (
+                //   <Redirect to="/scribbls/" />
+                // ) : (
                     <RenderLogin />
-                  )
+                  // )
               )
             }
           />
@@ -119,7 +128,8 @@ class App extends Component {
             render={(props) => (
               <SingleScribbl {...props}
                 scribbl={this.state.selectedScribbl}
-                viewUpdateForm={this.state.viewUpdateForm} />
+                viewUpdateForm={this.state.viewUpdateForm}
+                removeDeletedScribbl={this.removeDeletedScribbl} />
             )}
           /> 
 

@@ -1,10 +1,27 @@
 const express = require('express');
 const app = express()
+const cookieParser = require('cookie-parser')
 const { User, Work, Comment } = require('./src/models/models');
 const PORT = process.env.PORT || 4567
 const bodyParser = require('body-parser');
+const authMiddleware = require('./src/auth/authMiddleware')
+const logger = require('morgan')
+// const userRoutes = require('./routes/user')
 
+// console.log(userRoutes)
+// const { createWork,
+//         createComment,
+//         updateWork,
+//         deleteUser,
+//         deleteComment } = userRoutes
+
+const secret = process.env.COOKIE_SECRET || 'super_secret_cookie_secret'
+
+app.use(logger('dev'))
 app.use(bodyParser.json());
+app.use(cookieParser(secret));
+app.use('/user', authMiddleware.isLoggedIn)
+
 // Splash Page
 app.get('/', async (req, res) => {
     try {
@@ -39,7 +56,7 @@ app.get('/scribbls', async (req, res) => {
 // individual works by id 
 app.get('/scribbls/:id', async (req, res) => {
     try {
-        id = req.params.id
+        const id = req.params.id
         const scribbl = await Work.findById(id)
         res.json({ scribbl })
 
@@ -50,6 +67,7 @@ app.get('/scribbls/:id', async (req, res) => {
     }
 })
 
+// get all scribbls by type
 app.get('/scribbls/byType/:type', async (req, res) => {
     try {
         const type = req.params.type
@@ -67,7 +85,8 @@ app.get('/scribbls/byType/:type', async (req, res) => {
 })
 
 //create new scribbl 
-app.post('/create-scribbl', async (req, res) => {
+app.post('/user/create-scribbl', async (req, res) => {
+    console.log(req.body)
     try {
         const scribbl = await Work.create(req.body)
         res.json({ scribbl })
@@ -81,7 +100,8 @@ app.post('/create-scribbl', async (req, res) => {
 
 //update scribbl
 
-app.put('/scribbls/:id', async (req, res) =>{
+app.put('/user/scribbls/:id', async (req, res) =>{
+    console.log(req.params.id)
     try {
         const id = req.params.id
         const updatedScribl = {
@@ -96,11 +116,9 @@ app.put('/scribbls/:id', async (req, res) =>{
         console.error(e)
         res.status(500).json({message: e.message})
       }
-    
-    });
+});
 
 // delete scribbl
-
 app.delete('/user/scribbl/:id', async (req, res) => {
     try {
         const scribblid = req.params.id
@@ -117,47 +135,18 @@ app.delete('/user/scribbl/:id', async (req, res) => {
     }
 })
 
-
-      
-
-// login route 
-// app.get('/login', async (req, res) => {
+// // user profile
+// app.get('/user-profile/:id', async (req, res) => {
 //     try {
-//         const login = await User.findById(req.params.id)
-//         res.json(login)
+//         const userid = req.params.id
+//         const profile = await User.findById(userid)
+//         res.json({ profile })
 //     } catch (e) {
 //         res.status(500).json({
 //             message: e.message
 //         })
 //     }
 // })
-
-//create new user 
-// I have commented this out because I am building this into the auth/signup route
-// app.post('/login/sign-up', async (req, res) => {
-//     try {
-//         const user = await User.create()
-//         res.json(user)
-
-//     } catch (e) {
-//         res.status(500).json({
-//             message: e.message
-//         })
-//     }
-// })
-
-// user profile
-app.get('/user-profile/:id', async (req, res) => {
-    try {
-        const userid = req.params.id
-        const profile = await User.findById(userid)
-        res.json({ profile })
-    } catch (e) {
-        res.status(500).json({
-            message: e.message
-        })
-    }
-})
 
 //get all comments
 app.get('/comments', async (req, res) => {
@@ -172,7 +161,7 @@ app.get('/comments', async (req, res) => {
 })
 
 // create comment
-app.post('/scribbls/:id/comment', async (req, res) => {
+app.post('/user/scribbls/:id/comment', async (req, res) => {
     try {
         console.log(req.body)
 
@@ -188,24 +177,24 @@ app.post('/scribbls/:id/comment', async (req, res) => {
 
 //delete user
 
-app.delete('/user-profile/:id', async (req, res) => {
-    try {
-        const userid = req.params.id
-        const user = await User.destroy({
-            where: {
-                id: userid
-            }
-        })
-        res.json({ message: `User ${user} was deleted.` })
-    } catch (e) {
-        res.status(500).json({
-            message: e.message
-        })
-    }
-})
+// app.delete('/user/user-profile/:id', async (req, res) => {
+//     try {
+//         const userid = req.params.id
+//         const user = await User.destroy({
+//             where: {
+//                 id: userid
+//             }
+//         })
+//         res.json({ message: `User ${user} was deleted.` })
+//     } catch (e) {
+//         res.status(500).json({
+//             message: e.message
+//         })
+//     }
+// })
 
 // delete comment
-app.delete('/scribbls/:id/comment', async (req, res) => {
+app.delete('/user/scribbls/:id/comment', async (req, res) => {
     try {
         const commentid = req.params.id
         const comment = await Comment.destroy({
@@ -233,20 +222,18 @@ app.get('/auth', (req, res) => {
 })
 
 const validateUser = async (user) => {
-    const validEmail = user.email //should be string, and not blank
-    // const validPassword = user.password //same as above + any other parameters
+    const validUserName = user.user_name //should be string, and not blank
+    const validPassword = user.password //same as above + any other parameters
 
-    return validEmail;
-    // return validEmail && validPassword;
-
-
+    // return validEmail;
+    return validUserName && validPassword;
 }
 
 // 'user' below is a reference to the table name, need to adapt for sequelize
-const getUserbyEmail = async (email) => {
+const getUserbyUserName = async (user_name) => {
     let user = await User.findOne({
         where: {
-            email
+            user_name
         }
     })
     return user
@@ -255,18 +242,15 @@ const getUserbyEmail = async (email) => {
 const createUser = async (user) => { // this adds the user to the database, need to adapt to sequelize
     const newUser = await User.create(user)
     console.log(newUser)
-    const newUserId = await User.get({
-        where: {
-            id: newUser.id
-        }
-    })
+    const newUserId = await User.findByPk(newUser.id)
+    
     console.log(newUserId)
     return newUserId
 }
 
 app.post('/auth/signup', (req, res) => {
     if(validateUser(req.body)) {
-        getUserbyEmail(req.body.email)
+        getUserbyUserName(req.body.user_name)
         .then(user => {
             if(!user) {
                 bcrypt.hash(req.body.password, 8) // saltRounds is number of times, more is stronger
@@ -303,30 +287,30 @@ app.post('/auth/signup', (req, res) => {
 app.post('/auth/login', (req, res) => { //going to the /auth route
     if(validateUser(req.body)) {
         //check to see if in database
-        getUserbyEmail(req.body.email).then(user => {
+        getUserbyUserName(req.body.user_name).then(user => {
             if(user){
                 //compare pwds
                 bcrypt.compare(req.body.password, user.password).then(result => { //user.password is the hashed password from the db
                     // if passwords match
-                    res.json({
-                        message: `User ${user.user_name} and ${result}`
-                    })
-            //         if (result) {
-            //             //set cookie header
-            //             res.cookie('user_id', user.id, {
-            //                 httpOnly: true, // only accessible to web server
-            //                 signed: true, // best practices
-            //                 secure: true // makes work on https only, wont work while in development
-            //             })
-            //             res.json({
-            //                 result,
-            //                 message: 'logged in'
-            //             })
-            //         } else {
-            //             //invalid login error
-            //         }
+                    if (result) {
+                        //set cookie header
+                        res.cookie('user_id', user.id, {
+                            httpOnly: true, // only accessible to web server
+                            signed: true, // best practices
+                            // secure: true // makes work on https only, wont work while in development
+                        })
+                        res.json({
+                            result,
+                            user_id: user.id,
+                            message: `logged in ${result} as ${user.user_name}`
+                        })
+                    } else {
+                        res.json({
+                            message: 'Invalid Password, Please Try Again'
+                        })
+                    }
                 })
-            }else{
+            } else {
                 res.json({
                     message: "Invalid User"
                 })
