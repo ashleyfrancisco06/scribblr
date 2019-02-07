@@ -117,18 +117,18 @@ app.put('/user/scribbl/:id', async (req, res) =>{
     
 });
 
-// user profile
-app.get('/user-profile/:id', async (req, res) => {
-    try {
-        const userid = req.params.id
-        const profile = await User.findById(userid)
-        res.json({ profile })
-    } catch (e) {
-        res.status(500).json({
-            message: e.message
-        })
-    }
-})
+// // user profile
+// app.get('/user-profile/:id', async (req, res) => {
+//     try {
+//         const userid = req.params.id
+//         const profile = await User.findById(userid)
+//         res.json({ profile })
+//     } catch (e) {
+//         res.status(500).json({
+//             message: e.message
+//         })
+//     }
+// })
 
 //get all comments
 app.get('/comments', async (req, res) => {

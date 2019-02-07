@@ -126,7 +126,7 @@ class App extends Component {
             render={(props)=>(
               <SingleScribbl {...props} scribbl = {this.state.selectedScribbl}/> 
             )}
-          /> */}
+          />
 
         </Switch>
       </div>
