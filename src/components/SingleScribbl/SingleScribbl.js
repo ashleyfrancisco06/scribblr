@@ -12,8 +12,11 @@ const SingleScribbl = (props) => {
         return(
             <div>
                 <br />
-                <h3>{props.location.state.title}</h3>
-                <p>{props.location.state.content}</p>
+               
+                <div className="scribbl-content">
+                <h2>{props.location.state.title}</h2>
+                {props.location.state.content}
+                </div>
                     {/* <Route 
                             path = "/scribbls/:id"
                             render={(props)=>{

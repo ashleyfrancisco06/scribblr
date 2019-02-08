@@ -15,17 +15,10 @@ const Header = () => {
                 <Nav className="mr-auto">
                     <Link to="/scribbls" className="nav-link">Home</Link>
                     <NavDropdown title="Hello Scribblr!" id="basic-nav-dropdown">
-                        <Link to="#action/3.3"  className="dropdown-item">Profile</Link>
+                        <Link to="/user-profile"  className="dropdown-item">Profile</Link>
                         <Link to="/create-scribbl" className="dropdown-item">Create Scribbl</Link>
-                        <Link to="#action/3.2" className="dropdown-item">My Scribbls</Link>
                         <NavDropdown.Divider />
-                        <Link to="#action/3.4" className="dropdown-item">Log Out</Link>
-                        <Link className='nav-link' to="#action/3.3">Profile</Link>
-                        <Link className='nav-link' to="/create-scribbl">Create Scribbl</Link>
-                        <Link className='nav-link' to="#action/3.2">My Scribbls</Link>
-
-                        <NavDropdown.Divider />
-                        <Link to="#action/3.4">Log Out</Link>
+                        <Link to="/" className="dropdown-item">Log Out</Link>
                     </NavDropdown>
                 </Nav>
             </Navbar>
