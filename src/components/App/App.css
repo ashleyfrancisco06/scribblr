@@ -1,13 +1,19 @@
 .App {
   text-align: center;
-  
- 
+  /* height:100%; */
 }
 .para-outer{
   width:100vw;
-  height:100vh;
+  height:130vh;
   background-image: url(../images/typewriter.jpg);
   background-size: cover;
+  /* position:relative ; */
+  /* position: fixed; */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
 }
 
 #scribbls-h2{
@@ -15,9 +21,7 @@
   padding-top: 40px;
 }
 
-.genre-label{
-  flex:1;
-}
+
 
 .box{
   padding:11pt;
@@ -46,33 +50,52 @@
   height: 100%;
   line-height: 2;
   cursor: pointer;
+  background: rgba(255,255,255,.8);
 } 
 .controller:hover{
-  background: lightskyblue;
+  background: rgba(218,224,239,.7);
   
 }
 label{
-  flex:1;
-  width:50pt;
+  flex:0;
+  text-shadow: 1px 1px white;
+  background: rgba(255,255,255,.8);
+}
+.signup-input{
+  border-radius:2pt;
+  border: 2px solid white;
+}
+.signup-input:hover{
+  border: 2px solid rgba(218,224,239,.7);
+}
+.signup-button{
+  width:80px;
+  margin:0 auto;
+  border-radius: 2pt;
+}
+.signup-button:hover{
+  background:rgba(218,224,239,.7);
 }
 .login-button{
-  width:50px;
+  width:60px;
   margin: 0 auto;
+  border-radius:2pt;
 }
 .login-button:hover{
-background:lightskyblue;
+background:rgba(218,224,239,.7);
 }
 .login-input{
   flex:1;
   border-radius: 3px;
-  width:100pt;
+  
+  border: 2px solid white;
 }
 .login-input:hover{
-  border: 1px solid lightskyblue;
+  border: 2px solid rgba(218,224,239,.7);
 }
 .selected-controller {
   transition: border 0.5s ease-out;
-  border-bottom: 2px solid blue;
+  border-bottom: 2px solid rgba(218,224,241,.7);
 }
 
 .box-container {
@@ -83,6 +106,7 @@ background:lightskyblue;
   max-width: 24em;
   min-width: 21em;
   box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
+  background:rgba(255,255,255,.8);
   border-radius: 6px;
   padding: 24px;
 }
@@ -154,6 +178,33 @@ background:lightskyblue;
  flex-wrap: wrap;
  
 }
+.scribbl-content{
+  background: url(../images/typewriter.jpg);
+  width:800px;
+  margin:0 auto;
+  padding:10px;
+  background: rgba(255,255,255,.8);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+ 
+}
 
+.updateForm{
+ margin-bottom:-200px;
+}
+.user-profile{
+  display: flex;
+  flex-direction: column;
+  padding-top:50px;
+}
+.user-profile2{
+  width:500px;
+  height:300px;
+  padding-top:100px;
+  margin: 0 auto;
+  background: rgba(255,255,255,.8);
+}
 
 
