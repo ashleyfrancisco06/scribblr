@@ -28,18 +28,16 @@ class App extends Component {
 
   }
 
-  removeDeletedScribbl = (scribblToDelete) => {
-    const updatedSelectedScribbl = this.state.searchedScribbls.map((scribbl => {
-      console.log(scribbl.id)
-      console.log(scribblToDelete)
-      if (scribbl.id !== scribblToDelete) {
-        return scribbl
-      }
-    }))
-    this.setState(prevState => ({
-      searchedScribbls: updatedSelectedScribbl
-    }))
-  }
+  // removeDeletedScribbl = (scribblToDelete) => {
+  //   const updatedSelectedScribbl = this.state.searchedScribbls.map((scribbl => {
+  //     if (scribbl.id !== scribblToDelete) {
+  //       return scribbl
+  //     }
+  //   }))
+  //   this.setState(prevState => ({
+  //     searchedScribbls: updatedSelectedScribbl
+  //   }))
+  // }
   
 
   selectScribbl = (e) => {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Alert } from "react-bootstrap"
 // import './UpdateForm.css';
 import axios from 'axios';
 import genres from "../../scripts/genres.json"
@@ -9,6 +10,8 @@ class UpdateForm extends Component {
         this.state = {
             work: this.props.scribbl.scribbl,
             updated: false,
+            success: false,
+            oops: false
         }
     }
 
@@ -33,7 +36,6 @@ class UpdateForm extends Component {
     }
 
     handleFormSubmit = (event) => {
-        console.log('Scribbl Updated')
         event.preventDefault()
 
         // let work = this.state.work
@@ -44,7 +46,14 @@ class UpdateForm extends Component {
             type: this.state.work.type
         }
         axios.put(`/user/scribbls/${this.state.work.id}`, updatedWork)
-            .then(res => console.log(res)).catch(e=>console.log(e))
+            .then(res => {
+                if (res.status === 200) {
+                    this.setState({success: true})
+                }
+            })
+            .catch(res=> {
+                this.setState({oops: true})
+            })
         this.setState({
             work: updatedWork,
             updated: true
@@ -87,6 +96,18 @@ class UpdateForm extends Component {
                     placeholder='Work goes here...'
                     className='postContent'></textarea>
                 <br />
+                {
+                    this.state.success && 
+                        <Alert variant={'success'}>
+                            Scribbl Successfully Updated
+                        </Alert>
+                }
+                {
+                    this.state.oops && 
+                        <Alert variant={'danger'}>
+                            Oops, Something went wrong, did you log in?
+                        </Alert>
+                }
                 <button type='submit'
                     className='submitContent'
                     onSubmit={this.handleFormSubmit}

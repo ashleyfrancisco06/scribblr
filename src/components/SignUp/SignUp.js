@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Alert } from "react-bootstrap"
 import "../Login/login.css"
 import Axios from 'axios';
 class SignUp extends Component {
@@ -6,7 +7,7 @@ class SignUp extends Component {
         super(props)
 
         this.state = {
-
+            newUser: false
         };
     }
 
@@ -33,7 +34,14 @@ class SignUp extends Component {
         console.log(`user info: ${user}`)
 
         Axios.post('/auth/signup', user)
-            .then(res => console.log(res.data))
+            .then(res => this.setState({
+                newUser: res.data.newUserId.user_name}))
+
+            // } else {
+            //     console.log(res.data)
+            //     this.setState({
+            //         error: res.data
+            //     })
      }
     render() {
         return (
@@ -41,6 +49,12 @@ class SignUp extends Component {
                 <div className='header'>
                     Sign Up
                 </div>
+                {
+                    this.state.newUser && 
+                        <Alert variant={'info'}>
+                            Welcome to Scribblr {this.state.newUser}
+                        </Alert>
+                }
                 {/* Login field */}
                 <div className='box'>
                     {/* Username field */}

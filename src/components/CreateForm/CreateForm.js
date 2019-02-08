@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './CreateForm.css';
 import axios from 'axios';
 import genres from "../../scripts/genres.json"
+import { Alert } from 'react-bootstrap'
 
 class CreateForm extends Component {
     constructor() {
@@ -9,8 +10,6 @@ class CreateForm extends Component {
         this.state = {
             work: [],
             created: false
-
-
         }
     }
 
@@ -33,7 +32,6 @@ class CreateForm extends Component {
             title: this.state.title,
             content: this.state.content
         }
-        console.log(`new work: ${newWork}`)
 
         axios.post('/user/create-scribbl', newWork)  //changed route in server.js in order to enable authorization functionality
             .then(res => console.log(`post ${res.data}`));
@@ -78,6 +76,11 @@ class CreateForm extends Component {
                     placeholder='Work goes here...'
                     className='postContent'></textarea>
                 <br />
+                {this.state.created &&
+                    <Alert variant={'success'}>
+                        New Post Created
+                    </Alert>
+                }
                 <button type='submit'
                     className='submitContent'
                     onSubmit={this.handleSubmit}
