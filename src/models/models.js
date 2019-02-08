@@ -1,9 +1,13 @@
 const Sequelize = require('sequelize')
 
 // create database
-const db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:4567/scribblr_db', {
-      dialect: 'postgres'
-    });
+// const db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:4567/scribblr_db', {
+//       dialect: 'postgres'
+//     });
+const db = new Sequelize({
+    database: "scribblr_db",
+    dialect: "postgres"
+  })
 
 // create tables
 const User = db.define('users', {

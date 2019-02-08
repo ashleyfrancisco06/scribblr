@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Route, Redirect } from "react-router-dom"
+import { Alert } from "react-bootstrap"
 import "./login.css"
 import App from '../App/App';
 import Axios from "axios"
@@ -15,7 +16,8 @@ class Login extends Component {
             user_name: '',
             password:'',
             clicked:false,
-            isLoggedIn: false
+            isLoggedIn: false,
+            error: null,
         };
         this.submitLogin = this.submitLogin.bind(this)
     }
@@ -40,8 +42,14 @@ class Login extends Component {
         Axios.post('/auth/login', user)
         .then(res => {
             if (res.data.result) {
-            isLoggedIn = res.data.result
-            this.setState({isLoggedIn: true})
+                isLoggedIn = res.data.result
+                this.setState({isLoggedIn: true})
+            } else {
+                console.log(res.data)
+                this.setState({
+                    error: res.data
+                })
+
             }
         })
     }
@@ -60,6 +68,13 @@ class Login extends Component {
                 <div className='header'>
                     Login
                 </div>
+                {
+                    this.state.error && 
+                        <Alert variant={'danger'}>
+                            {this.state.error.message}
+                        </Alert>
+                }
+                
                 {/* Login field */}
                 <div className='box'>
                     {/* Username field */}
