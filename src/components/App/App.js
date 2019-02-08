@@ -8,6 +8,7 @@ import RenderLogin from '../RenderLogin-SignUp/RenderLogin-SignUp';
 import axios from 'axios';
 import SingleScribbl from "../SingleScribbl/SingleScribbl";
 import Container from "../Container/Container"
+import User from "../User/User"
 
 console.log(process.env)
 
@@ -21,7 +22,8 @@ class App extends Component {
       searchedScribbls: null,
       selectedScribbl: "",
       viewUpdateForm: true,
-      isLoggedIn: false
+      isLoggedIn: false,
+      user: null
     }
 
   }
@@ -102,8 +104,8 @@ class App extends Component {
                 //   <Redirect to="/scribbls/" />
                 // ) : (
                     <RenderLogin />
-                  // )
-              )
+                  )
+              // )
             }
           />
       
@@ -132,6 +134,17 @@ class App extends Component {
                 removeDeletedScribbl={this.removeDeletedScribbl} />
             )}
           /> 
+
+          <Route 
+          path="/user-profile"
+          // render={(props) =>(
+          //   <User {...props}
+          //  />
+
+
+          // )} 
+          component={User}
+          />
 
         </Switch>
         </div>

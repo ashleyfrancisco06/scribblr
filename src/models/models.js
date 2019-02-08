@@ -7,7 +7,11 @@ const Sequelize = require('sequelize')
 const db = new Sequelize({
     database: "scribblr_db",
     dialect: "postgres"
+<<<<<<< HEAD
   })
+=======
+ })
+>>>>>>> bb866de8cf7133faf4784f9600e69c60484c7f78
 
 // create tables
 const User = db.define('users', {
